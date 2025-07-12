@@ -1,13 +1,13 @@
 package by.itacademy.radzetskaya.ria.UI;
 
-import by.itacademy.radzetskaya.ria.utils.Driver;
+import by.itacademy.radzetskaya.ria.UI.utils.Driver;
 import org.openqa.selenium.WebDriver;
 
-public class BasePageUI {
+public class BaseUI {
 
     protected WebDriver driver;
 
-    public BasePageUI() {
+    public BaseUI() {
         driver = Driver.getDriver();
     }
 
