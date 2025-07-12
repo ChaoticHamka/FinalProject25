@@ -7,12 +7,14 @@ public class BaseUI {
 
     protected WebDriver driver;
 
+    private final String LINK_TO_MAIN_PAGE = "https://ria.ru";
+
     public BaseUI() {
         driver = Driver.getDriver();
     }
 
     public void openMainPage(){
-        driver.get("https://ria.ru");
+        driver.get(LINK_TO_MAIN_PAGE);
     }
 
 }

@@ -9,15 +9,17 @@ public class LoginForm extends BaseUI {
         this.driver = Driver.getDriver();
     }
 
-    //локаторы
-    private final String BUTTON_TO_LOGIN_FORM = "//div[@class=\"header__menu-left\"]";
-    private final String INPUT_LOGIN = "//input[@id=\"modalAuthEmailField\"]";
-    private final String BUTTON_LOGIN_ALL_GOOD = "//div[@id=\"modalAuthSubmit\"]/button[@class=\"form__btn\"]";
-    private final String BUTTON_LOGIN_WRONG_EMAIL = "//div[@id=\"modalAuthError\"]";
-
-    //действия с локаторами
+    //открыть форму авторизации
     public void openAuthorizationForm(){
-        Driver.clickButtonByXpath(BUTTON_TO_LOGIN_FORM);
+        Driver.clickButtonByClass(LoginFormLocators.BUTTON_TO_LOGIN_FORM_BYCLASS.getLocator());
+    }
+
+    //кнопка "Войти"
+    public String getAuthButtonText(){
+        return Driver.getTextByIdByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
+    }
+    public Boolean isAuthButtonEnabled(){
+        return Driver.isWebElementEnabledByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
 
 }
