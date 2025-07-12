@@ -22,4 +22,20 @@ public class LoginForm extends BaseUI {
         return Driver.isWebElementEnabledByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
 
+    //Поле Email
+    public void clickOnEmailLabel(){
+        Driver.clickButtonByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator());
+    }
+    public Boolean isEmailLabelContainClass(String class_){
+        return Driver.isWebElementContainClassByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator(), class_);
+    }
+
+    //Поле Пароль
+    public void clickOnPasswordLabel(){
+        Driver.clickButtonByXpath(LoginFormLocators.LABEL_PASSWORD_BYXPATH.getLocator());
+    }
+    public Boolean isPasswordLabelContainClass(String class_){
+        return Driver.isWebElementContainClassByXpath(LoginFormLocators.LABEL_PASSWORD_BYXPATH.getLocator(), class_);
+    }
+
 }

@@ -10,7 +10,13 @@ public enum LoginFormLocators {
     BUTTON_TO_LOGIN_FORM_BYCLASS ("header__menu-left"),
 
     //кнопка авторизации
-    BUTTON_AUTH_SUBMIT_BYXPATH ("//*[@id=\"modalAuthSubmit\"]/button");
+    BUTTON_AUTH_SUBMIT_BYXPATH ("//*[@id=\"modalAuthSubmit\"]/button"),
+
+    //поле логина
+    LABEL_EMAIL_BYXPATH("//div[@id=\"modalAuth\"]//div[contains(text(), \"Почта\")]/parent::label"),
+
+    //поле пароля
+    LABEL_PASSWORD_BYXPATH("//div[@id=\"modalAuth\"]//div[contains(text(), \"Пароль\")]/parent::label");
 
     private final String locator;
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 
 public class Driver {
     private static WebDriver driver;
@@ -49,6 +51,15 @@ public class Driver {
     //булевские проверки
     public static Boolean isWebElementEnabledByXpath (String xpath){
         return findElementByXpath(xpath).isEnabled();
+    }
+    public static Boolean isWebElementContainClassByXpath(String xpath, String class_){
+        WebElement webElement = findElementByXpath(xpath);
+        String classAttribute = webElement.getAttribute("class");
+        if (classAttribute==null || classAttribute.isEmpty()){
+            return false;
+        }
+        List<String> classes = Arrays.asList(classAttribute.split(" "));
+        return classes.contains(class_);
     }
 
     //методы для поиска веб-элементов
