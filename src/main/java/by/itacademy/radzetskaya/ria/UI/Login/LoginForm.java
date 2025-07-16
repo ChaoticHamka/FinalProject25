@@ -16,7 +16,7 @@ public class LoginForm extends BaseUI {
 
     //кнопка "Войти"
     public String getAuthButtonText(){
-        return Driver.getTextByIdByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
+        return Driver.getTextByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
     public Boolean isAuthButtonEnabled(){
         return Driver.isWebElementEnabledByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
@@ -28,6 +28,9 @@ public class LoginForm extends BaseUI {
     }
     public Boolean isEmailLabelContainClass(String class_){
         return Driver.isWebElementContainClassByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator(), class_);
+    }
+    public void setEmailField(String value){
+        Driver.setValueTextFieldById(LoginFormLocators.INPUT_EMAIL_BYID.getLocator(), value);
     }
 
     //Поле Пароль

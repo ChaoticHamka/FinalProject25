@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -19,7 +21,10 @@ public class Driver {
     //методы для работы драйвера
     public static WebDriver getDriver() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            driver = new ChromeDriver(options);
+//            driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_DURATION_IN_SECONDS));
         }
@@ -39,13 +44,19 @@ public class Driver {
     public static void clickButtonByClass(String class_){
         findElementByClass(class_).click();
     }
-    public static void clickButtonById(String id){
-        findElementById(id).click();
-    }
 
     //получение содержимого тега
-    public static String  getTextByIdByXpath(String xpath){
+    public static String getTextByXpath(String xpath){
         return findElementByXpath(xpath).getText();
+    }
+
+    //установка значения текстового поля
+    public static void setValueTextFieldByXpath(String xpath, String value){
+        findElementByXpath(xpath).sendKeys(value);
+
+    }
+    public static void setValueTextFieldById(String id, String value){
+        findElementById(id).sendKeys(value);
     }
 
     //булевские проверки

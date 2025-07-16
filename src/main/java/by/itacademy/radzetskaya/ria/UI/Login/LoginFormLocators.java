@@ -14,6 +14,7 @@ public enum LoginFormLocators {
 
     //поле логина
     LABEL_EMAIL_BYXPATH("//div[@id=\"modalAuth\"]//div[contains(text(), \"Почта\")]/parent::label"),
+    INPUT_EMAIL_BYID("modalAuthEmailField"),
 
     //поле пароля
     LABEL_PASSWORD_BYXPATH("//div[@id=\"modalAuth\"]//div[contains(text(), \"Пароль\")]/parent::label");
@@ -27,5 +28,4 @@ public enum LoginFormLocators {
     public String getLocator() {
         return locator;
     }
-
 }
