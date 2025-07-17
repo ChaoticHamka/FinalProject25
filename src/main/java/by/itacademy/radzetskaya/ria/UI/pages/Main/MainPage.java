@@ -1,5 +1,6 @@
 package by.itacademy.radzetskaya.ria.UI.pages.Main;
 
+import by.itacademy.radzetskaya.ria.Log;
 import by.itacademy.radzetskaya.ria.UI.BaseUI;
 import by.itacademy.radzetskaya.ria.UI.pages.Login.LoginFormLocators;
 import by.itacademy.radzetskaya.ria.UI.utils.Driver;
@@ -8,12 +9,14 @@ public class MainPage extends BaseUI {
 
     private final String LINK_TO_MAIN_PAGE = "https://ria.ru";
 
-    public void openMainPage(){
+    public void openMainPage() {
+        Log.info("Открытие главной страницы " + LINK_TO_MAIN_PAGE);
         driver.get(LINK_TO_MAIN_PAGE);
     }
 
     //открыть форму авторизации
-    public void openAuthorizationForm(){
+    public void openAuthorizationForm() {
+        Log.info("Открытие формы логина");
         Driver.clickButtonByClass(LoginFormLocators.BUTTON_TO_LOGIN_FORM_BYCLASS.getLocator());
     }
 }

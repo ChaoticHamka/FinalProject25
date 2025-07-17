@@ -1,6 +1,5 @@
 package by.itacademy.radzetskaya.ria.UI.pages.Login;
 
-import by.itacademy.radzetskaya.ria.UI.BaseUI;
 import by.itacademy.radzetskaya.ria.UI.pages.Main.MainPage;
 import by.itacademy.radzetskaya.ria.UI.utils.Driver;
 

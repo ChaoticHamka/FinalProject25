@@ -15,9 +15,6 @@ public class Driver {
     private static WebDriver driver;
     private static final int DEFAULT_DURATION_IN_SECONDS = 3;
 
-    public Driver() {
-    }
-
     //методы для работы драйвера
     public static WebDriver getDriver() {
         if (driver == null) {
@@ -30,6 +27,7 @@ public class Driver {
         }
         return driver;
     }
+
     public static void quit() {
         if (driver != null) {
             driver.quit();
@@ -38,41 +36,46 @@ public class Driver {
     }
 
     //клики
-    public static void clickButtonByXpath(String xpath){
+    public static void clickButtonByXpath(String xpath) {
         findElementByXpath(xpath).click();
     }
-    public static void clickButtonByClass(String class_){
+
+    public static void clickButtonByClass(String class_) {
         findElementByClass(class_).click();
     }
 
     //получение содержимого тега
-    public static String getTextByXpath(String xpath){
+    public static String getTextByXpath(String xpath) {
         return findElementByXpath(xpath).getText();
     }
-    public static String getTextById(String id){
+
+    public static String getTextById(String id) {
         return findElementById(id).getText();
     }
 
     //установка значения текстового поля
-    public static void setValueTextFieldByXpath(String xpath, String value){
+    public static void setValueTextFieldByXpath(String xpath, String value) {
         findElementByXpath(xpath).sendKeys(value);
 
     }
-    public static void setValueTextFieldById(String id, String value){
+
+    public static void setValueTextFieldById(String id, String value) {
         findElementById(id).sendKeys(value);
     }
 
     //булевские проверки
-    public static Boolean isWebElementEnabledByXpath (String xpath){
+    public static Boolean isWebElementEnabledByXpath(String xpath) {
         return findElementByXpath(xpath).isEnabled();
     }
-    public static Boolean isWebElementHasDisplayNoneById (String id){
+
+    public static Boolean isWebElementHasDisplayNoneById(String id) {
         return findElementById(id).getAttribute("style").contains("display: none;");
     }
-    public static Boolean isWebElementContainClassByXpath(String xpath, String class_){
+
+    public static Boolean isWebElementContainClassByXpath(String xpath, String class_) {
         WebElement webElement = findElementByXpath(xpath);
         String classAttribute = webElement.getAttribute("class");
-        if (classAttribute==null || classAttribute.isEmpty()){
+        if (classAttribute == null || classAttribute.isEmpty()) {
             return false;
         }
         List<String> classes = Arrays.asList(classAttribute.split(" "));
@@ -80,13 +83,15 @@ public class Driver {
     }
 
     //методы для поиска веб-элементов
-    private static WebElement findElementByXpath(String xpath){
+    private static WebElement findElementByXpath(String xpath) {
         return driver.findElement(By.xpath(xpath));
     }
-    private static WebElement findElementByClass(String class_){
+
+    private static WebElement findElementByClass(String class_) {
         return driver.findElement(By.className(class_));
     }
-    private static WebElement findElementById(String id){
+
+    private static WebElement findElementById(String id) {
         return driver.findElement(By.id(id));
     }
 }
