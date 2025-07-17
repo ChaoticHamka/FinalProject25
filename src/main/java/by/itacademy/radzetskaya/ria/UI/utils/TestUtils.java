@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 public class TestUtils extends BaseTest {
 
-    private Faker faker = new Faker();
+    private final Faker faker = new Faker();
     private final int MAX_RANDOM_VALUE = 9999;
 
     private final int MILLIS_IN_SECOND = 1000;
