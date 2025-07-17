@@ -1,28 +1,29 @@
-package by.itacademy.radzetskaya.ria;
+package by.itacademy.radzetskaya.ria.UI.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Log {
+public class BaseLog {
     private static final Logger logger = LogManager.getLogger();
 
-    public static void info(String message) {
+    protected static void info(String message) {
         logger.info(message);
     }
 
-    public static void debug(String message) {
+    protected static void debug(String message) {
         logger.debug(message);
     }
 
-    public static void error(String message) {
+    protected static void error(String message) {
         logger.error(message);
     }
 
-    public static void warn(String message) {
+    protected static void warn(String message) {
         logger.warn(message);
     }
 
-    public static void trace(String message) {
+    protected static void trace(String message) {
         logger.trace(message);
     }
+
 }

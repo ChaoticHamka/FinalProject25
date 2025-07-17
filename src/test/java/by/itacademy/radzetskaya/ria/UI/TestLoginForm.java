@@ -1,189 +1,155 @@
 package by.itacademy.radzetskaya.ria.UI;
 
-import by.itacademy.radzetskaya.ria.Log;
-import by.itacademy.radzetskaya.ria.UI.pages.Login.LoginForm;
-import by.itacademy.radzetskaya.ria.UI.utils.BaseTest;
-import com.github.javafaker.Faker;
-import org.junit.jupiter.api.BeforeEach;
+import by.itacademy.radzetskaya.ria.UI.utils.Log;
+import by.itacademy.radzetskaya.ria.UI.pages.Login.TestLoginFormUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestLoginForm extends BaseTest {
-
-    private LoginForm loginForm;
-    private Faker faker = new Faker();
-    private final int MAX_RANDOM_VALUE = 9999;
-
-    @BeforeEach
-    public void openLoginForm() {
-        loginForm = new LoginForm();
-        loginForm.openAuthorizationForm();
-    }
+public class TestLoginForm extends TestLoginFormUtils {
 
     //при открытии формы логина кнопка "Войти" неактивна, текст = "Войти"
     @Test
     public void testOpenLoginForm() {
-        Log.info("Проверка параметров веб-элементов при открытии формы логина в первый раз");
+        Log.startTest("Проверка параметров веб-элементов при открытии формы логина в первый раз");
         assertAll(
                 "Проверка параметров веб-элементов при открытии формы логина в первый раз",
-                () -> assertFalse(loginForm.isAuthButtonEnabled(), "Кнопка \"Войти\" должна быть неактивна"),
+                () -> assertFalse(isAuthButtonEnabled(), "Кнопка \"Войти\" должна быть неактивна"),
                 () -> assertEquals("Войти", loginForm.getAuthButtonText(), "Текст кнопки должен быть \"Войти\"")
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //проверяем, что поля емейла и пароля меняются при клике на них (OnFocused)
     @Test
     public void testEmailLabelChangeOnFocused() {
-        Log.info("Проверка поведения поля емейла при клике на него");
+        Log.startTest("Проверка поведения поля емейла при клике на него");
         String classForCheck = "m-focused";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeClick = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeClick);
+        Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
         loginForm.clickOnEmailLabel();
-        Boolean isLabelHasClassAfterClick = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterClick);
+        Log.testActions("клик на емейл");
+        Boolean isLabelHasClassAfterClick = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 "Проверка поведения поля емейла при клике на него",
                 () -> assertFalse(isLabelHasClassBeforeClick, "По умолчанию у поля Емейла нет класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля Емейла должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
     @Test
     public void testPasswordLabelChangeOnFocused() {
-        Log.info("Проверка поведения поля пароля при клике на него");
+        Log.startTest("Проверка поведения поля пароля при клике на него");
         String classForCheck = "m-focused";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeClick = loginForm.isPasswordLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeClick);
+        Boolean isLabelHasClassBeforeClick = checkClassOnPasswordLabel(classForCheck);
         loginForm.clickOnPasswordLabel();
-        Boolean isLabelHasClassAfterClick = loginForm.isPasswordLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterClick);
+        Log.testActions("клик на пароль");
+        Boolean isLabelHasClassAfterClick = checkClassOnPasswordLabel(classForCheck);
         assertAll(
                 "Проверка поведения поля пароля при клике на него",
                 () -> assertFalse(isLabelHasClassBeforeClick, "По умолчанию у поля пароля нет класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля пароль должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //проверяем, что поля емейла и пароля меняются при изменении фокуса на другое поле при пустом поле (Invalid)
     @Test
     public void testEmptyEmailLabelChangeOnInvalid() {
-        Log.info("Проверка лейбла емейла на Invalid");
+        Log.startTest("Проверка лейбла емейла на Invalid");
         String classForCheck = "m-invalid";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeClick = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeClick);
+        Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
         loginForm.clickOnEmailLabel();
         loginForm.clickOnPasswordLabel();
-        Boolean isLabelHasClassAfterClick = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterClick);
+        Log.testActions("клик на емейл, клик на пароль");
+        Boolean isLabelHasClassAfterClick = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 "Проверка лейбла емейла на Invalid",
                 () -> assertFalse(isLabelHasClassBeforeClick, "Сначала у поля емейла не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля Емейла должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
     @Test
     public void testEmptyPasswordLabelChangeOnInvalid() {
-        Log.info("Проверка лейбла пароля на Invalid");
+        Log.startTest("Проверка лейбла пароля на Invalid");
         String classForCheck = "m-invalid";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeClick = loginForm.isPasswordLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeClick);
+        Boolean isLabelHasClassBeforeClick = checkClassOnPasswordLabel(classForCheck);
         loginForm.clickOnPasswordLabel();
         loginForm.clickOnEmailLabel();
-        Boolean isLabelHasClassAfterClick = loginForm.isPasswordLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterClick);
+        Log.testActions("клик на пароль, клик на емейл");
+        Boolean isLabelHasClassAfterClick = checkClassOnPasswordLabel(classForCheck);
         assertAll(
                 "Проверка поля пароля на Invalid",
                 () -> assertFalse(isLabelHasClassBeforeClick, "Сначала у поля пароля не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля пароль должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //проверяем, что поле емейла имеет класс Invalid, если в него введено что-то кроме емейла
     @Test
     public void testEmailLabelChangeOnInvalidNumber() {
-        Log.info("Проверка поля емейла на Invalid если ввести число");
+        Log.startTest("Проверка поля емейла на Invalid если ввести число");
         String classForCheck = "m-invalid";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeEnter);
-        String enterValue = Integer.toString(faker.random().nextInt(MAX_RANDOM_VALUE));
+        Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
+        String enterValue = fakerInt();
         loginForm.setEmailField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
+        Log.setValue(enterValue);
         waiting(2);
-        Boolean isLabelHasClassAfterEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterEnter);
+        Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 "Проверка поля емейла на Invalid если ввести число",
                 () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
     @Test
     public void testEmailLabelChangeOnInvalidFullName() {
-        Log.info("Проверка поля емейла на Invalid если ввести имя и фамилию");
+        Log.startTest("Проверка поля емейла на Invalid если ввести имя и фамилию");
         String classForCheck = "m-invalid";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeEnter);
-        String enterValue = faker.name().fullName();
+        Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
+        String enterValue = fakerFullName();
         loginForm.setEmailField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
+        Log.setValue(enterValue);
         waiting(2);
-        Boolean isLabelHasClassAfterEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterEnter);
+        Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 "Проверка поля емейла на Invalid если ввести имя и фамилию",
                 () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
     @Test
     public void testEmailLabelChangeOnInvalidLogin() {
-        Log.info("Проверка поля емейла на Invalid если ввести логин");
+        Log.startTest("Проверка поля емейла на Invalid если ввести логин");
         String classForCheck = "m-invalid";
-        Log.debug("Проверяем наличие класса " + classForCheck);
-        Boolean isLabelHasClassBeforeEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("До действия - " + isLabelHasClassBeforeEnter);
-        String enterValue = faker.name().username();
+        Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
+        String enterValue = fakerUserName();
         loginForm.setEmailField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
+        Log.setValue(enterValue);
         waiting(2);
-        Boolean isLabelHasClassAfterEnter = loginForm.isEmailLabelContainClass(classForCheck);
-        Log.debug("После действия - " + isLabelHasClassAfterEnter);
+        Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 "Проверка поля емейла на Invalid если ввести логин",
                 () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //проверка исчезновения кнопки "Войти" и появления блока "Проверьте емейл"
     @Test
     public void testButtonDisplayOnInvalidField() {
-        Log.info("Проверка исчезновения кнопки \"Войти\" и появления блока \"Проверьте емейл\"");
-        Boolean isAuthDivIsNotDisplayedBeforeEnter = loginForm.isAuthDivNotDisplayed();
-        Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = loginForm.isAuthErrorDivNotDisplayed();
-        Log.debug("Блок \"Войти\" скрыт - " + isAuthDivIsNotDisplayedBeforeEnter);
-        Log.debug("Блок \"Проверьте емейл\" скрыт - " + isAuthErrorDivIsNotDisplayedBeforeEnter);
-        String enterValue = faker.internet().emailAddress().replace("@", "");
+        Log.startTest("Проверка исчезновения кнопки \"Войти\" и появления блока \"Проверьте емейл\"");
+        Boolean isAuthDivIsNotDisplayedBeforeEnter = isAuthDivNotDisplayed();
+        Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = isAuthErrorDivNotDisplayed();
+        String enterValue = fakerEmail().replace("@", "");
         loginForm.setEmailField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
-        Boolean isAuthDivIsNotDisplayedAfterEnter = loginForm.isAuthDivNotDisplayed();
-        Boolean isAuthErrorDivIsNotDisplayedAfterEnter = loginForm.isAuthErrorDivNotDisplayed();
-        Log.debug("Блок \"Войти\" скрыт - " + isAuthDivIsNotDisplayedAfterEnter);
-        Log.debug("Блок \"Проверьте емейл\" скрыт - " + isAuthErrorDivIsNotDisplayedAfterEnter);
+        Log.setValue(enterValue);
+        Boolean isAuthDivIsNotDisplayedAfterEnter = isAuthDivNotDisplayed();
+        Boolean isAuthErrorDivIsNotDisplayedAfterEnter = isAuthErrorDivNotDisplayed();
         assertAll(
                 "Проверка поведения блоков Div если ввести почти емейл",
                 () -> assertFalse(isAuthDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"Войти\" должна показываться"),
@@ -192,7 +158,7 @@ public class TestLoginForm extends BaseTest {
                 () -> assertEquals("Проверьте адрес почты", loginForm.getAuthErrorDivText(), "Текст блока должен быть \"Проверьте адрес почты\""),
                 () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"Проверьте адрес почты\" должна была появиться")
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //в пароле что-то есть классы - m-notempty m-valid
@@ -200,20 +166,15 @@ public class TestLoginForm extends BaseTest {
     public void testPasswordLabelChangeOnNotEmptyField() {
         String classForCheckNotEmpty = "m-notempty";
         String classForCheckValid = "m-valid";
-        Log.info("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него что-нибудь ввести");
-        Log.debug("Проверяем наличие классов " + classForCheckNotEmpty + " и " + classForCheckValid);
-        Boolean isLabelHasClassNotEmptyBeforeEnter = loginForm.isPasswordLabelContainClass(classForCheckNotEmpty);
-        Boolean isLabelHasClassValidBeforeEnter = loginForm.isPasswordLabelContainClass(classForCheckValid);
-        Log.debug("До действия " + classForCheckNotEmpty + " - " + isLabelHasClassNotEmptyBeforeEnter);
-        Log.debug("До действия " + classForCheckValid + " - " + isLabelHasClassValidBeforeEnter);
-        String enterValue = faker.internet().password();
+        Log.startTest("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него что-нибудь ввести");
+        Boolean isLabelHasClassNotEmptyBeforeEnter = checkClassOnPasswordLabel(classForCheckNotEmpty);
+        Boolean isLabelHasClassValidBeforeEnter = checkClassOnPasswordLabel(classForCheckValid);
+        String enterValue = fakerPassword();
         loginForm.setPasswordField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
+        Log.setValue(enterValue);
         waiting(2);
-        Boolean isLabelHasClassNotEmptyAfterEnter = loginForm.isPasswordLabelContainClass(classForCheckNotEmpty);
-        Boolean isLabelHasClassValidAfterEnter = loginForm.isPasswordLabelContainClass(classForCheckValid);
-        Log.debug("После действия " + classForCheckNotEmpty + " - " + isLabelHasClassNotEmptyAfterEnter);
-        Log.debug("После действия " + classForCheckValid + " - " + isLabelHasClassValidAfterEnter);
+        Boolean isLabelHasClassNotEmptyAfterEnter = checkClassOnPasswordLabel(classForCheckNotEmpty);
+        Boolean isLabelHasClassValidAfterEnter = checkClassOnPasswordLabel(classForCheckValid);
         assertAll(
                 "Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него что-нибудь ввести",
                 () -> assertFalse(isLabelHasClassNotEmptyBeforeEnter, "Сначала у поля пароля не должно быть класса " + classForCheckNotEmpty),
@@ -221,7 +182,7 @@ public class TestLoginForm extends BaseTest {
                 () -> assertTrue(isLabelHasClassNotEmptyAfterEnter, "У поля пароля должен был появиться класс " + classForCheckNotEmpty),
                 () -> assertTrue(isLabelHasClassValidAfterEnter, "У поля пароля должен был появиться класс " + classForCheckValid)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //верный емейл - m-notempty m-valid
@@ -229,20 +190,15 @@ public class TestLoginForm extends BaseTest {
     public void testEmailLabelChangeOnValidEmail() {
         String classForCheckNotEmpty = "m-notempty";
         String classForCheckValid = "m-valid";
-        Log.info("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный емейл");
-        Log.debug("Проверяем наличие классов " + classForCheckNotEmpty + " и " + classForCheckValid);
-        Boolean isLabelHasClassNotEmptyBeforeEnter = loginForm.isEmailLabelContainClass(classForCheckNotEmpty);
-        Boolean isLabelHasClassValidBeforeEnter = loginForm.isEmailLabelContainClass(classForCheckValid);
-        Log.debug("До действия " + classForCheckNotEmpty + " - " + isLabelHasClassNotEmptyBeforeEnter);
-        Log.debug("До действия " + classForCheckValid + " - " + isLabelHasClassValidBeforeEnter);
-        String enterValue = faker.internet().emailAddress();
+        Log.startTest("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный емейл");
+        Boolean isLabelHasClassNotEmptyBeforeEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
+        Boolean isLabelHasClassValidBeforeEnter = checkClassOnEmailLabel(classForCheckValid);
+        String enterValue = fakerEmail();
         loginForm.setEmailField(enterValue);
-        Log.debug("Вводим значение - " + enterValue);
+        Log.setValue(enterValue);
         waiting(2);
-        Boolean isLabelHasClassNotEmptyAfterEnter = loginForm.isEmailLabelContainClass(classForCheckNotEmpty);
-        Boolean isLabelHasClassValidAfterEnter = loginForm.isEmailLabelContainClass(classForCheckValid);
-        Log.debug("После действия " + classForCheckNotEmpty + " - " + isLabelHasClassNotEmptyAfterEnter);
-        Log.debug("После действия " + classForCheckValid + " - " + isLabelHasClassValidAfterEnter);
+        Boolean isLabelHasClassNotEmptyAfterEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
+        Boolean isLabelHasClassValidAfterEnter = checkClassOnEmailLabel(classForCheckValid);
         assertAll(
                 "Проверка поля емейла на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный емейл",
                 () -> assertFalse(isLabelHasClassNotEmptyBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheckNotEmpty),
@@ -250,50 +206,47 @@ public class TestLoginForm extends BaseTest {
                 () -> assertTrue(isLabelHasClassNotEmptyAfterEnter, "У поля емейла должен был появиться класс " + classForCheckNotEmpty),
                 () -> assertTrue(isLabelHasClassValidAfterEnter, "У поля емейла должен был появиться класс " + classForCheckValid)
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 
     //верный емейл и есть пароль
     @Test
     public void testValidEmailAndPassword() {
-        Log.info("Проверка изменения кнопки \"Войти\" при вводе валидных данных");
-        Boolean isAuthButtonEnabledBeforeEnter = loginForm.isAuthButtonEnabled();
-        Log.debug("Кнопка \"Войти\" активна - " + isAuthButtonEnabledBeforeEnter);
-        String enterValueEmail = faker.internet().emailAddress();
-        String enterValuePassword = faker.internet().password();
+        Log.startTest("Проверка изменения кнопки \"Войти\" при вводе валидных данных");
+        Boolean isAuthButtonEnabledBeforeEnter = isAuthButtonEnabled();
+        String enterValueEmail = fakerEmail();
+        String enterValuePassword = fakerPassword();
         loginForm.setEmailField(enterValueEmail);
         loginForm.setPasswordField(enterValuePassword);
-        Log.debug("Вводим значения емейла - " + enterValueEmail + " и пароля - " + enterValuePassword);
+        Log.setEmailAndPassword(enterValueEmail, enterValuePassword);
         waiting(2);
-        Boolean isAuthButtonEnabledAfterEnter = loginForm.isAuthButtonEnabled();
-        Log.debug("Кнопка \"Войти\" активна - " + isAuthButtonEnabledAfterEnter);
+        Boolean isAuthButtonEnabledAfterEnter = isAuthButtonEnabled();
         assertAll(
                 "Проверка изменения кнопки \"Войти\" при вводе валидных данных",
                 () -> assertFalse(isAuthButtonEnabledBeforeEnter, "Кнопка \"Войти\" должна быть неактивна"),
                 () -> assertTrue(isAuthButtonEnabledAfterEnter, "После ввода валидных данных кнопка \"Войти\" должна быть активна")
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
     @Test
     public void testValidEmailAndPasswordSubmit() {
-        Log.info("Проверка нажатия на кнопку \"Войти\" при вводе валидных данных");
-        Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = loginForm.isAuthErrorDivNotDisplayed();
-        Log.debug("Блок \"Неправильный логин или пароль\" активен - " + isAuthErrorDivIsNotDisplayedBeforeEnter);
-        String enterValueEmail = faker.internet().emailAddress();
-        String enterValuePassword = faker.internet().password();
+        Log.startTest("Проверка нажатия на кнопку \"Войти\" при вводе валидных данных");
+        Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = isAuthErrorDivNotDisplayed();
+        String enterValueEmail = fakerEmail();
+        String enterValuePassword = fakerPassword();
         loginForm.setEmailField(enterValueEmail);
         loginForm.setPasswordField(enterValuePassword);
-        Log.debug("Вводим значения емейла - " + enterValueEmail + " и пароля - " + enterValuePassword);
+        Log.setEmailAndPassword(enterValueEmail, enterValuePassword);
         loginForm.clickAuthButton();
-        waiting(2);
-        Boolean isAuthErrorDivIsNotDisplayedAfterEnter = loginForm.isAuthErrorDivNotDisplayed();
-        Log.debug("Блок \"Неправильный логин или пароль\" активен - " + isAuthErrorDivIsNotDisplayedAfterEnter);
+        Log.testActions("клик по кнопке \"Войти\"");
+        waiting(3);
+        Boolean isAuthErrorDivIsNotDisplayedAfterEnter = isAuthErrorDivNotDisplayed();
         assertAll(
                 "Проверка нажатия на кнопку \"Войти\" при вводе валидных данных",
                 () -> assertTrue(isAuthErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"Неправильный логин или пароль\" не должна отображаться"),
                 () -> assertEquals("Неправильный логин или пароль", loginForm.getAuthErrorDivText(), "Текст блока должен быть \"Неправильный логин или пароль\""),
                 () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"Неправильный логин или пароль\" должна была появиться")
         );
-        Log.info("---Завершение теста---");
+        Log.endTest();
     }
 }
