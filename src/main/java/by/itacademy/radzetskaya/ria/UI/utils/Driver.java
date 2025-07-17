@@ -49,6 +49,9 @@ public class Driver {
     public static String getTextByXpath(String xpath){
         return findElementByXpath(xpath).getText();
     }
+    public static String getTextById(String id){
+        return findElementById(id).getText();
+    }
 
     //установка значения текстового поля
     public static void setValueTextFieldByXpath(String xpath, String value){
@@ -62,6 +65,9 @@ public class Driver {
     //булевские проверки
     public static Boolean isWebElementEnabledByXpath (String xpath){
         return findElementByXpath(xpath).isEnabled();
+    }
+    public static Boolean isWebElementHasDisplayNoneById (String id){
+        return findElementById(id).getAttribute("style").contains("display: none;");
     }
     public static Boolean isWebElementContainClassByXpath(String xpath, String class_){
         WebElement webElement = findElementByXpath(xpath);
