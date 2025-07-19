@@ -1,4 +1,4 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.Base;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

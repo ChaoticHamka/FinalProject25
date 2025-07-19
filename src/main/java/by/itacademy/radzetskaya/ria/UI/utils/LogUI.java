@@ -1,9 +1,11 @@
 package by.itacademy.radzetskaya.ria.UI.utils;
 
-public class Log extends BaseLog {
+import by.itacademy.radzetskaya.ria.Base.BaseLog;
+
+public class LogUI extends BaseLog {
 
     public static void startTest(String message) {
-        info("[Тест: " + message + "]");
+        info("[ТестUI: " + message + "]");
     }
 
     public static void defaultActions(String message) {

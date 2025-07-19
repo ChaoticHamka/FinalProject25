@@ -1,5 +1,6 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.UI.utils.Base;
 
+import by.itacademy.radzetskaya.ria.UI.utils.Driver;
 import org.openqa.selenium.WebDriver;
 
 public class BaseUI {

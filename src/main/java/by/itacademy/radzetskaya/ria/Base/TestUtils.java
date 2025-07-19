@@ -1,12 +1,11 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.Base;
 
 import com.github.javafaker.Faker;
 
-public class TestUtils extends BaseTest {
+public class TestUtils{
 
     private final Faker faker = new Faker();
     private final int MAX_RANDOM_VALUE = 9999;
-
     private final int MILLIS_IN_SECOND = 1000;
 
     protected void waiting(int seconds) {
