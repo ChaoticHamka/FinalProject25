@@ -15,14 +15,14 @@ public class TestLoginFormUtils extends BaseTest {
     }
 
     protected Boolean checkClassOnEmailLabel(String classForCheck) {
-        LogUI.actionsInfoCheckClass(classForCheck, " у лейбла емейла");
+        LogUI.actionsInfoCheckClass(classForCheck, " у поля email");
         Boolean isElementHasClass = loginForm.isEmailLabelContainClass(classForCheck);
         LogUI.valueInfo(isElementHasClass);
         return isElementHasClass;
     }
 
     protected Boolean checkClassOnPasswordLabel(String classForCheck) {
-        LogUI.actionsInfoCheckClass(classForCheck, " у лейбла пароля");
+        LogUI.actionsInfoCheckClass(classForCheck, " у поля пароля");
         Boolean isElementHasClass = loginForm.isPasswordLabelContainClass(classForCheck);
         LogUI.valueInfo(isElementHasClass);
         return isElementHasClass;
@@ -30,19 +30,19 @@ public class TestLoginFormUtils extends BaseTest {
 
     protected Boolean isAuthDivNotDisplayed() {
         Boolean isElementDisplayed = loginForm.isAuthDivNotDisplayed();
-        LogUI.valueInfo("Блок \"Войти\" скрыт - ", isElementDisplayed);
+        LogUI.valueInfo("Блок авторизации скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 
     protected Boolean isAuthErrorDivNotDisplayed() {
         Boolean isElementDisplayed = loginForm.isAuthErrorDivNotDisplayed();
-        LogUI.valueInfo("Блок \"Проверьте емейл\" скрыт - ", isElementDisplayed);
+        LogUI.valueInfo("Блок \"Проверьте email\" скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 
     protected Boolean isAuthButtonEnabled() {
         Boolean isElementEnabled = loginForm.isAuthButtonEnabled();
-        LogUI.valueInfo("Кнопка \"Войти\" активна - ", isElementEnabled);
+        LogUI.valueInfo("Кнопка авторизации активна - ", isElementEnabled);
         return isElementEnabled;
     }
 

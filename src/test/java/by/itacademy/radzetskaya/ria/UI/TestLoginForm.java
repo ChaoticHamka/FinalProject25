@@ -8,170 +8,164 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLoginForm extends TestLoginFormUtils {
 
+    private final String CSS_CLASS_ON_FOCUSED = "m-focused";
+    private final String CSS_CLASS_INVALID = "m-invalid";
+    private final String CSS_CLASS_NOT_EMPTY = "m-notempty";
+    private final String CSS_CLASS_VALID = "m-valid";
+    private final String VALUE_AUTH_BUTTON = "Войти";
+    private final String VALUE_CHECK_EMAIL_ERROR_DIV = "Проверьте адрес почты";
+    private final String VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV = "Неправильный логин или пароль";
+
     //при открытии формы логина кнопка "Войти" неактивна, текст = "Войти"
     @Test
     public void testOpenLoginForm() {
         LogUI.startTest("Проверка параметров веб-элементов при открытии формы логина в первый раз");
         assertAll(
                 "Проверка параметров веб-элементов при открытии формы логина в первый раз",
-                () -> assertFalse(isAuthButtonEnabled(), "Кнопка \"Войти\" должна быть неактивна"),
-                () -> assertEquals("Войти", loginForm.getAuthButtonText(), "Текст кнопки должен быть \"Войти\"")
+                () -> assertFalse(isAuthButtonEnabled(), "Кнопка \"" + VALUE_AUTH_BUTTON + "\" должна быть неактивна"),
+                () -> assertEquals(VALUE_AUTH_BUTTON, loginForm.getAuthButtonText(), "Текст кнопки должен быть \"" + VALUE_AUTH_BUTTON + "\"")
         );
-        LogUI.endTest();
     }
 
-    //проверяем, что поля емейла и пароля меняются при клике на них (OnFocused)
+    //проверяем, что поля email и пароля меняются при клике на них (OnFocused)
     @Test
     public void testEmailLabelChangeOnFocused() {
-        LogUI.startTest("Проверка поведения поля емейла при клике на него");
-        String classForCheck = "m-focused";
+        LogUI.startTest("Проверка поведения поля email при клике на него");
+        String classForCheck = CSS_CLASS_ON_FOCUSED;
         Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
         loginForm.clickOnEmailLabel();
-        LogUI.testActions("клик на емейл");
         Boolean isLabelHasClassAfterClick = checkClassOnEmailLabel(classForCheck);
         assertAll(
-                "Проверка поведения поля емейла при клике на него",
-                () -> assertFalse(isLabelHasClassBeforeClick, "По умолчанию у поля Емейла нет класса " + classForCheck),
-                () -> assertTrue(isLabelHasClassAfterClick, "У поля Емейла должен был появиться класс " + classForCheck)
+                "Проверка поведения поля email при клике на него",
+                () -> assertFalse(isLabelHasClassBeforeClick, "По умолчанию у поля email нет класса " + classForCheck),
+                () -> assertTrue(isLabelHasClassAfterClick, "У поля email должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
+
     @Test
     public void testPasswordLabelChangeOnFocused() {
         LogUI.startTest("Проверка поведения поля пароля при клике на него");
-        String classForCheck = "m-focused";
+        String classForCheck = CSS_CLASS_ON_FOCUSED;
         Boolean isLabelHasClassBeforeClick = checkClassOnPasswordLabel(classForCheck);
         loginForm.clickOnPasswordLabel();
-        LogUI.testActions("клик на пароль");
         Boolean isLabelHasClassAfterClick = checkClassOnPasswordLabel(classForCheck);
         assertAll(
                 "Проверка поведения поля пароля при клике на него",
                 () -> assertFalse(isLabelHasClassBeforeClick, "По умолчанию у поля пароля нет класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля пароль должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
 
-    //проверяем, что поля емейла и пароля меняются при изменении фокуса на другое поле при пустом поле (Invalid)
+    //проверяем, что поля email и пароля меняются при изменении фокуса на другое поле при пустом поле (Invalid)
     @Test
     public void testEmptyEmailLabelChangeOnInvalid() {
-        LogUI.startTest("Проверка лейбла емейла на Invalid");
-        String classForCheck = "m-invalid";
+        LogUI.startTest("Проверка поля email на Invalid");
+        String classForCheck = CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
         loginForm.clickOnEmailLabel();
         loginForm.clickOnPasswordLabel();
-        LogUI.testActions("клик на емейл, клик на пароль");
         Boolean isLabelHasClassAfterClick = checkClassOnEmailLabel(classForCheck);
         assertAll(
-                "Проверка лейбла емейла на Invalid",
-                () -> assertFalse(isLabelHasClassBeforeClick, "Сначала у поля емейла не должно быть класса " + classForCheck),
-                () -> assertTrue(isLabelHasClassAfterClick, "У поля Емейла должен был появиться класс " + classForCheck)
+                "Проверка поля email на Invalid",
+                () -> assertFalse(isLabelHasClassBeforeClick, "Сначала у поля email не должно быть класса " + classForCheck),
+                () -> assertTrue(isLabelHasClassAfterClick, "У поля email должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
+
     @Test
     public void testEmptyPasswordLabelChangeOnInvalid() {
-        LogUI.startTest("Проверка лейбла пароля на Invalid");
-        String classForCheck = "m-invalid";
+        LogUI.startTest("Проверка поля пароля на Invalid");
+        String classForCheck = CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeClick = checkClassOnPasswordLabel(classForCheck);
         loginForm.clickOnPasswordLabel();
         loginForm.clickOnEmailLabel();
-        LogUI.testActions("клик на пароль, клик на емейл");
         Boolean isLabelHasClassAfterClick = checkClassOnPasswordLabel(classForCheck);
         assertAll(
                 "Проверка поля пароля на Invalid",
                 () -> assertFalse(isLabelHasClassBeforeClick, "Сначала у поля пароля не должно быть класса " + classForCheck),
                 () -> assertTrue(isLabelHasClassAfterClick, "У поля пароль должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
 
-    //проверяем, что поле емейла имеет класс Invalid, если в него введено что-то кроме емейла
+    //проверяем, что поле email имеет класс Invalid, если в него введено что-то кроме email
     @Test
     public void testEmailLabelChangeOnInvalidNumber() {
-        LogUI.startTest("Проверка поля емейла на Invalid если ввести число");
-        String classForCheck = "m-invalid";
+        LogUI.startTest("Проверка поля email на Invalid если ввести число");
+        String classForCheck = CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
         String enterValue = fakerInt();
         loginForm.setEmailField(enterValue);
-        LogUI.setValue(enterValue);
         waiting(2);
         Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
-                "Проверка поля емейла на Invalid если ввести число",
-                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
-                () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
+                "Проверка поля email на Invalid если ввести число",
+                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля email не должно быть класса " + classForCheck),
+                () -> assertTrue(isLabelHasClassAfterEnter, "У поля email должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
+
     @Test
     public void testEmailLabelChangeOnInvalidFullName() {
-        LogUI.startTest("Проверка поля емейла на Invalid если ввести имя и фамилию");
-        String classForCheck = "m-invalid";
+        LogUI.startTest("Проверка поля email на Invalid если ввести имя и фамилию");
+        String classForCheck = CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
         String enterValue = fakerFullName();
         loginForm.setEmailField(enterValue);
-        LogUI.setValue(enterValue);
         waiting(2);
         Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
-                "Проверка поля емейла на Invalid если ввести имя и фамилию",
-                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
-                () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
+                "Проверка поля email на Invalid если ввести имя и фамилию",
+                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля email не должно быть класса " + classForCheck),
+                () -> assertTrue(isLabelHasClassAfterEnter, "У поля email должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
+
     @Test
     public void testEmailLabelChangeOnInvalidLogin() {
-        LogUI.startTest("Проверка поля емейла на Invalid если ввести логин");
-        String classForCheck = "m-invalid";
+        LogUI.startTest("Проверка поля email на Invalid если ввести логин");
+        String classForCheck = CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
         String enterValue = fakerUserName();
         loginForm.setEmailField(enterValue);
-        LogUI.setValue(enterValue);
         waiting(2);
         Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
-                "Проверка поля емейла на Invalid если ввести логин",
-                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheck),
-                () -> assertTrue(isLabelHasClassAfterEnter, "У поля Емейла должен был появиться класс " + classForCheck)
+                "Проверка поля email на Invalid если ввести логин",
+                () -> assertFalse(isLabelHasClassBeforeEnter, "Сначала у поля email не должно быть класса " + classForCheck),
+                () -> assertTrue(isLabelHasClassAfterEnter, "У поля email должен был появиться класс " + classForCheck)
         );
-        LogUI.endTest();
     }
 
-    //проверка исчезновения кнопки "Войти" и появления блока "Проверьте емейл"
+    //проверка исчезновения кнопки "Войти" и появления блока "Проверьте email"
     @Test
     public void testButtonDisplayOnInvalidField() {
-        LogUI.startTest("Проверка исчезновения кнопки \"Войти\" и появления блока \"Проверьте емейл\"");
+        LogUI.startTest("Проверка исчезновения кнопки \"" + VALUE_AUTH_BUTTON + "\" и появления блока \"" + VALUE_CHECK_EMAIL_ERROR_DIV + "\"");
         Boolean isAuthDivIsNotDisplayedBeforeEnter = isAuthDivNotDisplayed();
         Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = isAuthErrorDivNotDisplayed();
         String enterValue = fakerEmail().replace("@", "");
         loginForm.setEmailField(enterValue);
-        LogUI.setValue(enterValue);
         Boolean isAuthDivIsNotDisplayedAfterEnter = isAuthDivNotDisplayed();
         Boolean isAuthErrorDivIsNotDisplayedAfterEnter = isAuthErrorDivNotDisplayed();
         assertAll(
-                "Проверка поведения блоков Div если ввести почти емейл",
-                () -> assertFalse(isAuthDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"Войти\" должна показываться"),
-                () -> assertTrue(isAuthErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"Проверьте адрес почты\" не должна отображаться"),
-                () -> assertTrue(isAuthDivIsNotDisplayedAfterEnter, "Кнопка \"Войти\" должна была пропасть"),
-                () -> assertEquals("Проверьте адрес почты", loginForm.getAuthErrorDivText(), "Текст блока должен быть \"Проверьте адрес почты\""),
-                () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"Проверьте адрес почты\" должна была появиться")
+                "Проверка исчезновения кнопки \"" + VALUE_AUTH_BUTTON + "\" и появления блока \"" + VALUE_CHECK_EMAIL_ERROR_DIV + "\"",
+                () -> assertFalse(isAuthDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + VALUE_AUTH_BUTTON + "\" должна показываться"),
+                () -> assertTrue(isAuthErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + VALUE_CHECK_EMAIL_ERROR_DIV + "\" не должна отображаться"),
+                () -> assertTrue(isAuthDivIsNotDisplayedAfterEnter, "Кнопка \"" + VALUE_AUTH_BUTTON + "\" должна была пропасть"),
+                () -> assertEquals(VALUE_CHECK_EMAIL_ERROR_DIV, loginForm.getAuthErrorDivText(), "Текст блока должен быть \"" + VALUE_CHECK_EMAIL_ERROR_DIV + "\""),
+                () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + VALUE_CHECK_EMAIL_ERROR_DIV + "\" должна была появиться")
         );
-        LogUI.endTest();
     }
 
     //в пароле что-то есть классы - m-notempty m-valid
     @Test
     public void testPasswordLabelChangeOnNotEmptyField() {
-        String classForCheckNotEmpty = "m-notempty";
-        String classForCheckValid = "m-valid";
+        String classForCheckNotEmpty = CSS_CLASS_NOT_EMPTY;
+        String classForCheckValid = CSS_CLASS_VALID;
         LogUI.startTest("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него что-нибудь ввести");
         Boolean isLabelHasClassNotEmptyBeforeEnter = checkClassOnPasswordLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidBeforeEnter = checkClassOnPasswordLabel(classForCheckValid);
         String enterValue = fakerPassword();
         loginForm.setPasswordField(enterValue);
-        LogUI.setValue(enterValue);
         waiting(2);
         Boolean isLabelHasClassNotEmptyAfterEnter = checkClassOnPasswordLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidAfterEnter = checkClassOnPasswordLabel(classForCheckValid);
@@ -182,71 +176,65 @@ public class TestLoginForm extends TestLoginFormUtils {
                 () -> assertTrue(isLabelHasClassNotEmptyAfterEnter, "У поля пароля должен был появиться класс " + classForCheckNotEmpty),
                 () -> assertTrue(isLabelHasClassValidAfterEnter, "У поля пароля должен был появиться класс " + classForCheckValid)
         );
-        LogUI.endTest();
     }
 
-    //верный емейл - m-notempty m-valid
+    //верный email - m-notempty m-valid
     @Test
     public void testEmailLabelChangeOnValidEmail() {
-        String classForCheckNotEmpty = "m-notempty";
-        String classForCheckValid = "m-valid";
-        LogUI.startTest("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный емейл");
+        String classForCheckNotEmpty = CSS_CLASS_NOT_EMPTY;
+        String classForCheckValid = CSS_CLASS_VALID;
+        LogUI.startTest("Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный email");
         Boolean isLabelHasClassNotEmptyBeforeEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidBeforeEnter = checkClassOnEmailLabel(classForCheckValid);
         String enterValue = fakerEmail();
         loginForm.setEmailField(enterValue);
-        LogUI.setValue(enterValue);
         waiting(2);
         Boolean isLabelHasClassNotEmptyAfterEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidAfterEnter = checkClassOnEmailLabel(classForCheckValid);
         assertAll(
-                "Проверка поля емейла на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный емейл",
-                () -> assertFalse(isLabelHasClassNotEmptyBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheckNotEmpty),
-                () -> assertFalse(isLabelHasClassValidBeforeEnter, "Сначала у поля емейла не должно быть класса " + classForCheckValid),
-                () -> assertTrue(isLabelHasClassNotEmptyAfterEnter, "У поля емейла должен был появиться класс " + classForCheckNotEmpty),
-                () -> assertTrue(isLabelHasClassValidAfterEnter, "У поля емейла должен был появиться класс " + classForCheckValid)
+                "Проверка поля email на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный email",
+                () -> assertFalse(isLabelHasClassNotEmptyBeforeEnter, "Сначала у поля email не должно быть класса " + classForCheckNotEmpty),
+                () -> assertFalse(isLabelHasClassValidBeforeEnter, "Сначала у поля email не должно быть класса " + classForCheckValid),
+                () -> assertTrue(isLabelHasClassNotEmptyAfterEnter, "У поля email должен был появиться класс " + classForCheckNotEmpty),
+                () -> assertTrue(isLabelHasClassValidAfterEnter, "У поля email должен был появиться класс " + classForCheckValid)
         );
-        LogUI.endTest();
     }
 
-    //верный емейл и есть пароль
+    //верный email и есть пароль
     @Test
     public void testValidEmailAndPassword() {
-        LogUI.startTest("Проверка изменения кнопки \"Войти\" при вводе валидных данных");
+        LogUI.startTest("Проверка изменения кнопки \"" + VALUE_AUTH_BUTTON + "\" при вводе валидных данных");
         Boolean isAuthButtonEnabledBeforeEnter = isAuthButtonEnabled();
         String enterValueEmail = fakerEmail();
         String enterValuePassword = fakerPassword();
         loginForm.setEmailField(enterValueEmail);
         loginForm.setPasswordField(enterValuePassword);
-        LogUI.setEmailAndPassword(enterValueEmail, enterValuePassword);
         waiting(2);
         Boolean isAuthButtonEnabledAfterEnter = isAuthButtonEnabled();
         assertAll(
-                "Проверка изменения кнопки \"Войти\" при вводе валидных данных",
-                () -> assertFalse(isAuthButtonEnabledBeforeEnter, "Кнопка \"Войти\" должна быть неактивна"),
-                () -> assertTrue(isAuthButtonEnabledAfterEnter, "После ввода валидных данных кнопка \"Войти\" должна быть активна")
+                "Проверка изменения кнопки \"" + VALUE_AUTH_BUTTON + "\" при вводе валидных данных",
+                () -> assertFalse(isAuthButtonEnabledBeforeEnter, "Кнопка \"" + VALUE_AUTH_BUTTON + "\" должна быть неактивна"),
+                () -> assertTrue(isAuthButtonEnabledAfterEnter, "После ввода валидных данных кнопка \"" + VALUE_AUTH_BUTTON + "\" должна быть активна")
         );
-        LogUI.endTest();
     }
+
     @Test
     public void testValidEmailAndPasswordSubmit() {
-        LogUI.startTest("Проверка нажатия на кнопку \"Войти\" при вводе валидных данных");
+        LogUI.startTest("Проверка нажатия на кнопку \"" + VALUE_AUTH_BUTTON + "\" при вводе валидных данных");
         Boolean isAuthErrorDivIsNotDisplayedBeforeEnter = isAuthErrorDivNotDisplayed();
         String enterValueEmail = fakerEmail();
         String enterValuePassword = fakerPassword();
         loginForm.setEmailField(enterValueEmail);
         loginForm.setPasswordField(enterValuePassword);
-        LogUI.setEmailAndPassword(enterValueEmail, enterValuePassword);
         loginForm.clickAuthButton();
-        LogUI.testActions("клик по кнопке \"Войти\"");
         waiting(3);
         Boolean isAuthErrorDivIsNotDisplayedAfterEnter = isAuthErrorDivNotDisplayed();
         assertAll(
-                "Проверка нажатия на кнопку \"Войти\" при вводе валидных данных",
-                () -> assertTrue(isAuthErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"Неправильный логин или пароль\" не должна отображаться"),
-                () -> assertEquals("Неправильный логин или пароль", loginForm.getAuthErrorDivText(), "Текст блока должен быть \"Неправильный логин или пароль\""),
-                () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"Неправильный логин или пароль\" должна была появиться")
+                "Проверка нажатия на кнопку \"" + VALUE_AUTH_BUTTON + "\" при вводе валидных данных",
+                () -> assertTrue(isAuthErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" не должна отображаться"),
+                () -> assertEquals(VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV, loginForm.getAuthErrorDivText(), "Текст блока должен быть \"" + VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\""),
+                () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" должна была появиться")
         );
-        LogUI.endTest();
+
     }
 }

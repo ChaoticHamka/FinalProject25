@@ -28,12 +28,11 @@ public class LogUI extends BaseLog {
         debug("-> " + message + value);
     }
 
-    public static void setValue(String value) {
-        debug("Вводим значение - " + value);
+    public static void setValueEmail(String value) {
+        debug("Вводим значение в поле email " + value);
     }
-
-    public static void setEmailAndPassword(String email, String password) {
-        debug("Вводим значения емейла - " + email + " и пароля - " + password);
+    public static void setValuePassword(String value) {
+        debug("Вводим значение в поле пароля " + value);
     }
 
     public static void endTest() {
