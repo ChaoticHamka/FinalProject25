@@ -4,8 +4,5 @@
 <h2>Радецкая Юлия</h2>
 </div>
 
-<style>
-div{
-background-color: yellow;
-}
-</style>
+[![codewars](https://www.codewars.com/users/ChaoticHamka/badges/large)](https://www.codewars.com/users/ChaoticHamka)
+
