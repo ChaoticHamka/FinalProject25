@@ -19,8 +19,8 @@ public class Driver {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
-            driver = new ChromeDriver(options);
-//            driver = new ChromeDriver();
+//            driver = new ChromeDriver(options);
+            driver = new ChromeDriver();
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_DURATION_IN_SECONDS));
         }
@@ -60,6 +60,9 @@ public class Driver {
     public static void setValueTextFieldById(String id, String value) {
         findElementById(id).sendKeys(value);
     }
+    public static void setValueTextFieldByXpath(String xpath, String value) {
+        findElementByXpath(xpath).sendKeys(value);
+    }
 
     //булевские проверки
     public static Boolean isWebElementEnabledByXpath(String xpath) {
@@ -78,6 +81,10 @@ public class Driver {
         }
         List<String> classes = Arrays.asList(classAttribute.split(" "));
         return classes.contains(class_);
+    }
+
+    public static WebElement getWebElementByClass(String class_){
+        return findElementByClass(class_);
     }
 
     //методы для поиска веб-элементов

@@ -40,6 +40,10 @@ public class LogUI extends BaseLog {
         debug("Вводим значение в поле пароля " + value);
     }
 
+    public static void setArticle(String value) {
+        debug("Выбрана статья " + value);
+    }
+
     public static void endTest() {
         info("===Завершение теста===");
     }
