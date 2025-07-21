@@ -1,6 +1,6 @@
 package by.itacademy.radzetskaya.ria.UI;
 
-import by.itacademy.radzetskaya.ria.UI.pages.search.Articles;
+import by.itacademy.radzetskaya.ria.Base.Articles;
 import by.itacademy.radzetskaya.ria.UI.pages.search.TestSearchUtils;
 import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
 import org.junit.jupiter.api.Test;

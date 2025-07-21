@@ -260,4 +260,5 @@ public class TestLoginForm extends TestLoginFormUtils {
                 () -> assertEquals(enterValuePassword, loginForm.getPasswordFieldValue(), "Пароль должен был остаться тем же")
         );
     }
+
 }

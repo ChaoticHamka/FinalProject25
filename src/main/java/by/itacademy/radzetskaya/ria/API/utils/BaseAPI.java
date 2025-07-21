@@ -3,6 +3,7 @@ package by.itacademy.radzetskaya.ria.API.utils;
 import by.itacademy.radzetskaya.ria.Base.TestUtils;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.junit.jupiter.api.AfterEach;
 
 public class BaseAPI extends TestUtils {
 
@@ -24,6 +25,11 @@ public class BaseAPI extends TestUtils {
 
     public void logResponse() {
         response.then().log().all();
+    }
+
+    @AfterEach
+    public void tearDown(){
+        LogAPI.endTest();
     }
 
 }

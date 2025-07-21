@@ -1,13 +1,14 @@
 package by.itacademy.radzetskaya.ria.API;
 
 import by.itacademy.radzetskaya.ria.API.modules.Login;
+import by.itacademy.radzetskaya.ria.API.utils.BaseAPI;
 import by.itacademy.radzetskaya.ria.API.utils.LogAPI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestLogin {
+public class TestLogin extends BaseAPI {
 
     private Login login;
 

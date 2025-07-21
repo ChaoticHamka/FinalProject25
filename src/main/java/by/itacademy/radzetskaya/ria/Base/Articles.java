@@ -1,4 +1,4 @@
-package by.itacademy.radzetskaya.ria.UI.pages.search;
+package by.itacademy.radzetskaya.ria.Base;
 
 import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
 
