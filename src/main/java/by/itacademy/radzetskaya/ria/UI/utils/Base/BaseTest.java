@@ -10,13 +10,13 @@ import org.junit.jupiter.api.BeforeEach;
 public class BaseTest extends TestUtils {
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         MainPage basePage = new MainPage();
         basePage.openMainPage();
     }
 
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         LogUI.endTest();
         Driver.quit();
     }

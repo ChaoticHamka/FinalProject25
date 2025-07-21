@@ -4,7 +4,7 @@ import by.itacademy.radzetskaya.ria.Base.TestUtils;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-public class BaseAPI extends TestUtils{
+public class BaseAPI extends TestUtils {
 
     protected Response response;
 

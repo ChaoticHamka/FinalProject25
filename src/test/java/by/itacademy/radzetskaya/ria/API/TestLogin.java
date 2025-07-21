@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestLogin{
+public class TestLogin {
 
     private Login login;
 
     @BeforeEach
-    public void setLogin(){
+    public void setLogin() {
         this.login = new Login();
     }
 
-//    @Test
-    public void testDefault(){
+    @Test
+    public void testDefault() {
         LogAPI.startTest("Проверка по умолчанию (емейл и пароль валидные)");
         login.setResponseDefault();
         assertAll(
@@ -29,8 +29,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testWrongPassword(){
+    @Test
+    public void testWrongPassword() {
         LogAPI.startTest("Проверка на неверный пароль (емейл и пароль валидные)");
         login.setResponseWithEmail();
         assertAll(
@@ -42,8 +42,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testWrongPasswordLimit(){
+    @Test
+    public void testWrongPasswordLimit() {
         LogAPI.startTest("Проверка на неверный пароль (емейл и пароль валидные)");
         login.setResponseWithEmail();
         assertAll(
@@ -55,8 +55,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testWithoutHeaders(){
+    @Test
+    public void testWithoutHeaders() {
         LogAPI.startTest("Проверка без хедеров (емейл и пароль валидные)");
         login.setResponseDefaultWithoutHeaders();
         assertAll(
@@ -68,8 +68,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testEmptyPassword(){
+    @Test
+    public void testEmptyPassword() {
         LogAPI.startTest("Проверка с пустым паролем (емейл валидный)");
         login.setResponseEmptyPassword();
         assertAll(
@@ -81,8 +81,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testEmptyLogin(){
+    @Test
+    public void testEmptyLogin() {
         LogAPI.startTest("Проверка с пустым емейлом (пароль валидный)");
         login.setResponseEmptyLogin();
         assertAll(
@@ -94,8 +94,8 @@ public class TestLogin{
         LogAPI.endTest();
     }
 
-//    @Test
-    public void testNotEmail(){
+    @Test
+    public void testNotEmail() {
         LogAPI.startTest("Проверка вместо емейла имя (пароль валидный)");
         login.setResponseLoginNotEmail();
         assertAll(
@@ -108,7 +108,7 @@ public class TestLogin{
     }
 
     @Test
-    public void testEmptyLoginAndPassword(){
+    public void testEmptyLoginAndPassword() {
         LogAPI.startTest("Проверка с пустыми емейлом и паролем");
         login.setResponseEmptyLoginAndPassword();
         assertAll(
@@ -121,7 +121,7 @@ public class TestLogin{
     }
 
     @Test
-    public void testEmptyBody(){
+    public void testEmptyBody() {
         LogAPI.startTest("Проверка с пустым body");
         login.setResponseEmptyBody();
         assertAll(

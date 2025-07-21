@@ -2,7 +2,6 @@ package by.itacademy.radzetskaya.ria.UI.pages.Main;
 
 import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
 import by.itacademy.radzetskaya.ria.UI.utils.Base.BaseUI;
-import by.itacademy.radzetskaya.ria.UI.pages.Login.LoginFormLocators;
 import by.itacademy.radzetskaya.ria.UI.utils.Driver;
 
 public class MainPage extends BaseUI {
@@ -17,6 +16,6 @@ public class MainPage extends BaseUI {
     //открыть форму авторизации
     public void openAuthorizationForm() {
         LogUI.defaultActions("Открытие формы логина");
-        Driver.clickButtonByClass(LoginFormLocators.BUTTON_TO_LOGIN_FORM_BYCLASS.getLocator());
+        Driver.clickButtonByClass(MainPageLocators.BUTTON_TO_LOGIN_FORM_BYCLASS.getLocator());
     }
 }

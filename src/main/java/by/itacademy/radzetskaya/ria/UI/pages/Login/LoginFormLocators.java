@@ -6,8 +6,7 @@ public enum LoginFormLocators {
     //  Если что-то открывает - ЧТО_(англ)TO_ЧТО_ОТКРЫВАЕТ_КАКИЩЕМ
     //  Если это веб-элемент, с которым производятся действия - ЧТО_МЕСТОНАХОЖДЕНИЕ|ОПИСАНИЕ_КАКИЩЕМ
 
-    //кнопка открытия формы авторизации на главной странице
-    BUTTON_TO_LOGIN_FORM_BYCLASS("header__menu-left"),
+    DIV_AUTH_CLOSE_BUTTON_BYCLASS("modal__close"),
 
     //кнопка авторизации
     DIV_AUTH_SUBMIT_BYID("modalAuthSubmit"),

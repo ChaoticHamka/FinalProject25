@@ -2,7 +2,7 @@ package by.itacademy.radzetskaya.ria.Base;
 
 import com.github.javafaker.Faker;
 
-public class TestUtils{
+public class TestUtils {
 
     private final Faker faker = new Faker();
     private final int MAX_RANDOM_VALUE = 9999;

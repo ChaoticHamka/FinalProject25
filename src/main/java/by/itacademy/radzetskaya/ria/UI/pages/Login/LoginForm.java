@@ -10,19 +10,24 @@ public class LoginForm extends MainPage {
     public String getAuthButtonText() {
         return Driver.getTextByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
+
     public void clickAuthButton() {
         Driver.clickButtonByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
         LogUI.testActions("клик на кнопку авторизации");
     }
+
     public Boolean isAuthButtonEnabled() {
         return Driver.isWebElementEnabledByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
+
     public Boolean isAuthDivNotDisplayed() {
         return Driver.isWebElementHasDisplayNoneById(LoginFormLocators.DIV_AUTH_SUBMIT_BYID.getLocator());
     }
+
     public Boolean isAuthErrorDivNotDisplayed() {
         return Driver.isWebElementHasDisplayNoneById(LoginFormLocators.DIV_AUTH_ERROR_BYID.getLocator());
     }
+
     public String getAuthErrorDivText() {
         return Driver.getTextById(LoginFormLocators.DIV_AUTH_ERROR_BYID.getLocator());
     }
@@ -32,12 +37,20 @@ public class LoginForm extends MainPage {
         Driver.clickButtonByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator());
         LogUI.testActions("клик на email");
     }
+
     public Boolean isEmailLabelContainClass(String class_) {
         return Driver.isWebElementContainClassByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator(), class_);
     }
+
     public void setEmailField(String value) {
         Driver.setValueTextFieldById(LoginFormLocators.INPUT_EMAIL_BYID.getLocator(), value);
         LogUI.setValueEmail(value);
+    }
+
+    public String getEmailFieldValue() {
+        String fieldValue = Driver.getValueById(LoginFormLocators.INPUT_EMAIL_BYID.getLocator());
+        LogUI.valueInfo("email", fieldValue);
+        return fieldValue;
     }
 
     //Поле Пароль
@@ -45,12 +58,24 @@ public class LoginForm extends MainPage {
         Driver.clickButtonByXpath(LoginFormLocators.LABEL_PASSWORD_BYXPATH.getLocator());
         LogUI.testActions("клик на пароль");
     }
+
     public Boolean isPasswordLabelContainClass(String class_) {
         return Driver.isWebElementContainClassByXpath(LoginFormLocators.LABEL_PASSWORD_BYXPATH.getLocator(), class_);
     }
+
     public void setPasswordField(String value) {
         Driver.setValueTextFieldById(LoginFormLocators.INPUT_PASSWORD_BYID.getLocator(), value);
         LogUI.setValuePassword(value);
     }
 
+    public String getPasswordFieldValue() {
+        String fieldValue = Driver.getValueById(LoginFormLocators.INPUT_PASSWORD_BYID.getLocator());
+        LogUI.valueInfo("пароля", fieldValue);
+        return fieldValue;
+    }
+
+    public void clickCloseAuthorizationForm() {
+        Driver.clickButtonByClass(LoginFormLocators.DIV_AUTH_CLOSE_BUTTON_BYCLASS.getLocator());
+        LogUI.testActions("закрытие формы авторизации");
+    }
 }

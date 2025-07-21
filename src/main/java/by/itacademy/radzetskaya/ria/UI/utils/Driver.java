@@ -26,6 +26,7 @@ public class Driver {
         }
         return driver;
     }
+
     public static void quit() {
         if (driver != null) {
             driver.quit();
@@ -37,6 +38,7 @@ public class Driver {
     public static void clickButtonByXpath(String xpath) {
         findElementByXpath(xpath).click();
     }
+
     public static void clickButtonByClass(String class_) {
         findElementByClass(class_).click();
     }
@@ -45,8 +47,13 @@ public class Driver {
     public static String getTextByXpath(String xpath) {
         return findElementByXpath(xpath).getText();
     }
+
     public static String getTextById(String id) {
         return findElementById(id).getText();
+    }
+
+    public static String getValueById(String id) {
+        return findElementById(id).getAttribute("value");
     }
 
     //установка значения текстового поля
@@ -58,9 +65,11 @@ public class Driver {
     public static Boolean isWebElementEnabledByXpath(String xpath) {
         return findElementByXpath(xpath).isEnabled();
     }
+
     public static Boolean isWebElementHasDisplayNoneById(String id) {
         return findElementById(id).getAttribute("style").contains("display: none;");
     }
+
     public static Boolean isWebElementContainClassByXpath(String xpath, String class_) {
         WebElement webElement = findElementByXpath(xpath);
         String classAttribute = webElement.getAttribute("class");
@@ -75,9 +84,11 @@ public class Driver {
     private static WebElement findElementByXpath(String xpath) {
         return driver.findElement(By.xpath(xpath));
     }
+
     private static WebElement findElementByClass(String class_) {
         return driver.findElement(By.className(class_));
     }
+
     private static WebElement findElementById(String id) {
         return driver.findElement(By.id(id));
     }

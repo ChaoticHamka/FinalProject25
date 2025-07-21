@@ -24,6 +24,10 @@ public class LogUI extends BaseLog {
         debug("\tТекущее значение = " + value);
     }
 
+    public static void valueInfo(String field, String value) {
+        debug("\tТекущее значение поля " + field + " = " + value);
+    }
+
     public static void valueInfo(String message, Boolean value) {
         debug("-> " + message + value);
     }
@@ -31,6 +35,7 @@ public class LogUI extends BaseLog {
     public static void setValueEmail(String value) {
         debug("Вводим значение в поле email " + value);
     }
+
     public static void setValuePassword(String value) {
         debug("Вводим значение в поле пароля " + value);
     }

@@ -25,6 +25,7 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseWithEmail() {
         response = given()
                 .headers(setHeaders())
@@ -32,12 +33,14 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseDefaultWithoutHeaders() {
         response = given()
                 .body(setBodyDefault())
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseEmptyPassword() {
         response = given()
                 .headers(setHeaders())
@@ -45,6 +48,7 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseEmptyLogin() {
         response = given()
                 .headers(setHeaders())
@@ -52,6 +56,7 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseEmptyLoginAndPassword() {
         response = given()
                 .headers(setHeaders())
@@ -59,6 +64,7 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseLoginNotEmail() {
         response = given()
                 .headers(setHeaders())
@@ -66,6 +72,7 @@ public class Login extends BaseAPI {
                 .when()
                 .post(POST_LOGIN_LINK);
     }
+
     public void setResponseEmptyBody() {
         response = given()
                 .headers(setHeaders())
@@ -79,6 +86,7 @@ public class Login extends BaseAPI {
                 "&password=" +
                 setFakerPassword();
     }
+
     private String setBodyWithEmail() {
         String fakeEmail = "e@mail.ru";
         LogAPI.setValue("login", fakeEmail);
@@ -87,23 +95,27 @@ public class Login extends BaseAPI {
                 "&password=" +
                 setFakerPassword();
     }
+
     private String setBodyEmptyPassword() {
         return "login=" +
                 setFakerEmail() +
                 "&password="
                 ;
     }
+
     private String setBodyEmptyEmail() {
         return "login=" +
                 "&password=" +
                 setFakerPassword()
                 ;
     }
+
     private String setBodyEmptyEmailAndPassword() {
         return "login=" +
                 "&password="
                 ;
     }
+
     private String setBodyEmailName() {
         return "login=" +
                 setFakerName() +
@@ -116,11 +128,13 @@ public class Login extends BaseAPI {
         LogAPI.setValue("login", fakeEmail);
         return fakeEmail;
     }
+
     private String setFakerPassword() {
         String fakePassword = fakerPassword();
         LogAPI.setValue("password", fakePassword);
         return fakePassword;
     }
+
     private String setFakerName() {
         String fakeName = fakerUserName();
         LogAPI.setValue("login", fakeName);
