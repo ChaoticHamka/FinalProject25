@@ -1,8 +1,8 @@
-package by.itacademy.radzetskaya.ria.UI;
+package by.itacademy.radzetskaya.ria.ui;
 
 import by.itacademy.radzetskaya.ria.Base.Articles;
-import by.itacademy.radzetskaya.ria.UI.pages.search.TestSearchUtils;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.pages.search.TestSearchUtils;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -13,13 +13,12 @@ public class TestSearchPage extends TestSearchUtils {
     @Test
     public void testSearchRandomArticleFormSite() {
         String heading = "Поиск по случайному названию статьи с сайта";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         search.clickOnSearchIcon();
         search.setSearchArticle();
         search.clickOnSearchButton();
         search.clickOnSort();
         search.clickOnRelevance();
-        waiting(2);
         String firstArticleTitle = search.getFirstArticleTitle();
         assertAll(
                 heading,
@@ -31,13 +30,12 @@ public class TestSearchPage extends TestSearchUtils {
     public void testSearchRandomArticleFormArticles() {
         Articles articles = new Articles();
         String heading = "Поиск по случайному названию статьи из списка";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         search.clickOnSearchIcon();
         search.setSearchArticle(articles.getRandomArticleName());
         search.clickOnSearchButton();
         search.clickOnSort();
         search.clickOnRelevance();
-        waiting(2);
         String firstArticleTitle = search.getFirstArticleTitle();
         assertAll(
                 heading,

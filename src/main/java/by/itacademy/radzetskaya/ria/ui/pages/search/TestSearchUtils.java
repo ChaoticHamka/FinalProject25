@@ -1,6 +1,6 @@
-package by.itacademy.radzetskaya.ria.UI.pages.search;
+package by.itacademy.radzetskaya.ria.ui.pages.search;
 
-import by.itacademy.radzetskaya.ria.UI.utils.Base.BaseTest;
+import by.itacademy.radzetskaya.ria.ui.utils.Base.BaseTest;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestSearchUtils extends BaseTest {

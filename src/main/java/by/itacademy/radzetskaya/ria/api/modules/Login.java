@@ -106,15 +106,15 @@ public class Login extends BaseApi {
     }
 
     private String setRandomEmail() {
-        return setValue("login", fakerEmail());
+        return setValue("login", getRandomEmail());
     }
 
     private String setRandomPassword() {
-        return setValue("password", fakerPassword());
+        return setValue("password", getRandomPassword());
     }
 
     private String setRandomName() {
-        return setValue("login", fakerUserName());
+        return setValue("login", getRandomUserName());
     }
 
     private String setValue(String field, String value) {

@@ -1,4 +1,4 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.ui.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,13 +14,11 @@ public class Driver {
     private static WebDriver driver;
     private static final int DEFAULT_DURATION_IN_SECONDS = 3;
 
-    //методы для работы драйвера
     public static WebDriver getDriver() {
         if (driver == null) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
-//            driver = new ChromeDriver(options);
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(DEFAULT_DURATION_IN_SECONDS));
         }
@@ -34,7 +32,6 @@ public class Driver {
         }
     }
 
-    //клики
     public static void clickButtonByXpath(String xpath) {
         findElementByXpath(xpath).click();
     }
@@ -43,7 +40,6 @@ public class Driver {
         findElementByClass(class_).click();
     }
 
-    //получение содержимого тега
     public static String getTextByXpath(String xpath) {
         return findElementByXpath(xpath).getText();
     }
@@ -56,15 +52,14 @@ public class Driver {
         return findElementById(id).getAttribute("value");
     }
 
-    //установка значения текстового поля
     public static void setValueTextFieldById(String id, String value) {
         findElementById(id).sendKeys(value);
     }
+
     public static void setValueTextFieldByXpath(String xpath, String value) {
         findElementByXpath(xpath).sendKeys(value);
     }
 
-    //булевские проверки
     public static Boolean isWebElementEnabledByXpath(String xpath) {
         return findElementByXpath(xpath).isEnabled();
     }
@@ -83,11 +78,10 @@ public class Driver {
         return classes.contains(class_);
     }
 
-    public static WebElement getWebElementByClass(String class_){
+    public static WebElement getWebElementByClass(String class_) {
         return findElementByClass(class_);
     }
 
-    //методы для поиска веб-элементов
     private static WebElement findElementByXpath(String xpath) {
         return driver.findElement(By.xpath(xpath));
     }

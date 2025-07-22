@@ -1,6 +1,6 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.ui.utils;
 
-public class Finals {
+public class DefaultValues {
 
     public final static String CSS_CLASS_ON_FOCUSED = "m-focused";
     public final static String CSS_CLASS_INVALID = "m-invalid";

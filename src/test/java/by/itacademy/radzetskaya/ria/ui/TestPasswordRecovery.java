@@ -1,8 +1,8 @@
-package by.itacademy.radzetskaya.ria.UI;
+package by.itacademy.radzetskaya.ria.ui;
 
-import by.itacademy.radzetskaya.ria.UI.pages.passwordRecovery.TestPasswordRecoveryUtils;
-import by.itacademy.radzetskaya.ria.UI.utils.Finals;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.pages.passwordRecovery.TestPasswordRecoveryUtils;
+import by.itacademy.radzetskaya.ria.ui.utils.DefaultValues;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,11 +12,10 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
     @Test
     public void testOpenRecoveryFormByClickOnPasswordRecoveryText() {
         String heading = "Проверка открытия формы восстановления пароля после нажатия на текст \"Восстановить пароль\"";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         Boolean isPasswordRecoveryFormNotDisplayedBefore = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedBefore = isAuthFormNotDisplayed();
         passwordRecovery.clickOnPasswordRecoveryText();
-        waiting(2);
         Boolean isPasswordRecoveryFormNotDisplayedAfter = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedAfter = isAuthFormNotDisplayed();
         assertAll(
@@ -31,11 +30,10 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
     @Test
     public void testOpenRecoveryFormByClickOnGetAccessToAccountText() {
         String heading = "Проверка открытия формы восстановления пароля после нажатия на \"Получить доступ к аккаунту\"";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         Boolean isPasswordRecoveryFormNotDisplayedBefore = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedBefore = isAuthFormNotDisplayed();
         passwordRecovery.clickOnGetAccessToAccount();
-        waiting(2);
         Boolean isPasswordRecoveryFormNotDisplayedAfter = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedAfter = isAuthFormNotDisplayed();
         assertAll(
@@ -50,13 +48,11 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
     @Test
     public void testOpenRecoveryFormAndClickBack() {
         String heading = "Проверка открытия формы авторизации, если нажать \"Назад\"";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
-        waiting(2);
         Boolean isPasswordRecoveryFormNotDisplayedBefore = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedBefore = isAuthFormNotDisplayed();
         passwordRecovery.clickBack();
-        waiting(2);
         Boolean isPasswordRecoveryFormNotDisplayedAfter = isPasswordRecoveryFormNotDisplayed();
         Boolean isAuthFormNotDisplayedAfter = isAuthFormNotDisplayed();
         assertAll(
@@ -71,9 +67,9 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
     @Test
     public void testEmailLabelChangeOnFocused() {
         String heading = "Проверка поведения поля email при клике на него";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
-        String classForCheck = Finals.CSS_CLASS_ON_FOCUSED;
+        String classForCheck = DefaultValues.CSS_CLASS_ON_FOCUSED;
         Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
         passwordRecovery.clickOnEmailLabel();
         Boolean isLabelHasClassAfterClick = checkClassOnEmailLabel(classForCheck);
@@ -87,13 +83,12 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
     @Test
     public void testEmailLabelChangeOnInvalidLogin() {
         String heading = "Проверка поля email на Invalid если ввести логин";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
-        String classForCheck = Finals.CSS_CLASS_INVALID;
+        String classForCheck = DefaultValues.CSS_CLASS_INVALID;
         Boolean isLabelHasClassBeforeEnter = checkClassOnEmailLabel(classForCheck);
-        String enterValue = fakerUserName();
+        String enterValue = getRandomUserName();
         passwordRecovery.setEmailField(enterValue);
-        waiting(2);
         Boolean isLabelHasClassAfterEnter = checkClassOnEmailLabel(classForCheck);
         assertAll(
                 heading,
@@ -104,37 +99,34 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
 
     @Test
     public void testButtonDisplayOnInvalidField() {
-        String heading = "Проверка исчезновения кнопки \"" + Finals.VALUE_RECOVERY_PASSWORD_BUTTON + "\" и появления блока \"" + Finals.VALUE_CHECK_EMAIL_ERROR_DIV + "\"";
-        LogUI.startTest(heading);
+        String heading = "Проверка исчезновения кнопки \"" + DefaultValues.VALUE_RECOVERY_PASSWORD_BUTTON + "\" и появления блока \"" + DefaultValues.VALUE_CHECK_EMAIL_ERROR_DIV + "\"";
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
         Boolean isPasswordRecoveryDivIsNotDisplayedBeforeEnter = isPasswordRecoveryDivNotDisplayed();
         Boolean isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter = isPasswordRecoveryErrorDivNotDisplayed();
-        String enterValue = fakerEmail().replace("@", "");
-        passwordRecovery.setEmailField(enterValue);
+        passwordRecovery.setEmailField(getRandomInvalidEmail());
         Boolean isPasswordRecoveryDivIsNotDisplayedAfterEnter = isPasswordRecoveryDivNotDisplayed();
         Boolean isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter = isPasswordRecoveryErrorDivNotDisplayed();
         assertAll(
                 heading,
-                () -> assertFalse(isPasswordRecoveryDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + Finals.VALUE_RECOVERY_PASSWORD_BUTTON + "\" должна показываться"),
-                () -> assertTrue(isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + Finals.VALUE_CHECK_EMAIL_ERROR_DIV + "\" не должна отображаться"),
-                () -> assertTrue(isPasswordRecoveryDivIsNotDisplayedAfterEnter, "Кнопка \"" + Finals.VALUE_RECOVERY_PASSWORD_BUTTON + "\" должна была пропасть"),
-                () -> assertEquals(Finals.VALUE_CHECK_EMAIL_ERROR_DIV, passwordRecovery.getPasswordRecoveryErrorDivText(), "Текст блока должен быть \"" + Finals.VALUE_CHECK_EMAIL_ERROR_DIV + "\""),
-                () -> assertFalse(isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + Finals.VALUE_CHECK_EMAIL_ERROR_DIV + "\" должна была появиться")
+                () -> assertFalse(isPasswordRecoveryDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + DefaultValues.VALUE_RECOVERY_PASSWORD_BUTTON + "\" должна показываться"),
+                () -> assertTrue(isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + DefaultValues.VALUE_CHECK_EMAIL_ERROR_DIV + "\" не должна отображаться"),
+                () -> assertTrue(isPasswordRecoveryDivIsNotDisplayedAfterEnter, "Кнопка \"" + DefaultValues.VALUE_RECOVERY_PASSWORD_BUTTON + "\" должна была пропасть"),
+                () -> assertEquals(DefaultValues.VALUE_CHECK_EMAIL_ERROR_DIV, passwordRecovery.getPasswordRecoveryErrorDivText(), "Текст блока должен быть \"" + DefaultValues.VALUE_CHECK_EMAIL_ERROR_DIV + "\""),
+                () -> assertFalse(isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + DefaultValues.VALUE_CHECK_EMAIL_ERROR_DIV + "\" должна была появиться")
         );
     }
 
     @Test
     public void testEmailLabelChangeOnValidEmail() {
-        String classForCheckNotEmpty = Finals.CSS_CLASS_NOT_EMPTY;
-        String classForCheckValid = Finals.CSS_CLASS_VALID;
+        String classForCheckNotEmpty = DefaultValues.CSS_CLASS_NOT_EMPTY;
+        String classForCheckValid = DefaultValues.CSS_CLASS_VALID;
         String heading = "Проверка поля пароля на классы " + classForCheckNotEmpty + " и " + classForCheckValid + ", если в него ввести валидный email";
-        LogUI.startTest(heading);
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
         Boolean isLabelHasClassNotEmptyBeforeEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidBeforeEnter = checkClassOnEmailLabel(classForCheckValid);
-        String enterValue = fakerEmail();
-        passwordRecovery.setEmailField(enterValue);
-        waiting(2);
+        passwordRecovery.setEmailField(getRandomEmail());
         Boolean isLabelHasClassNotEmptyAfterEnter = checkClassOnEmailLabel(classForCheckNotEmpty);
         Boolean isLabelHasClassValidAfterEnter = checkClassOnEmailLabel(classForCheckValid);
         assertAll(
@@ -148,20 +140,18 @@ public class TestPasswordRecovery extends TestPasswordRecoveryUtils {
 
     @Test
     public void testValidEmailSubmit() {
-        String heading = "Проверка нажатия на кнопку \"" + Finals.VALUE_RECOVERY_PASSWORD_BUTTON + "\" при вводе валидных данных";
-        LogUI.startTest(heading);
+        String heading = "Проверка нажатия на кнопку \"" + DefaultValues.VALUE_RECOVERY_PASSWORD_BUTTON + "\" при вводе валидных данных";
+        LogUi.startTest(heading);
         passwordRecovery.clickOnPasswordRecoveryText();
         Boolean isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter = isPasswordRecoveryErrorDivNotDisplayed();
-        String enterValueEmail = fakerEmail();
-        passwordRecovery.setEmailField(enterValueEmail);
+        passwordRecovery.setEmailField(getRandomEmail());
         passwordRecovery.clickPasswordRecoveryButton();
-        waiting(3);
         Boolean isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter = isPasswordRecoveryErrorDivNotDisplayed();
         assertAll(
                 heading,
-                () -> assertTrue(isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + Finals.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" не должна отображаться"),
-                () -> assertEquals(Finals.VALUE_NOT_SUCH_USER_ERROR_DIV, passwordRecovery.getPasswordRecoveryErrorDivText(), "Текст блока должен быть \"" + Finals.VALUE_NOT_SUCH_USER_ERROR_DIV + "\""),
-                () -> assertFalse(isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + Finals.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" должна была появиться")
+                () -> assertTrue(isPasswordRecoveryErrorDivIsNotDisplayedBeforeEnter, "Сначала кнопка \"" + DefaultValues.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" не должна отображаться"),
+                () -> assertEquals(DefaultValues.VALUE_NOT_SUCH_USER_ERROR_DIV, passwordRecovery.getPasswordRecoveryErrorDivText(), "Текст блока должен быть \"" + DefaultValues.VALUE_NOT_SUCH_USER_ERROR_DIV + "\""),
+                () -> assertFalse(isPasswordRecoveryErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + DefaultValues.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" должна была появиться")
         );
     }
 }

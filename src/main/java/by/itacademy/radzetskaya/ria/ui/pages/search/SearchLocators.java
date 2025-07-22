@@ -1,4 +1,4 @@
-package by.itacademy.radzetskaya.ria.UI.pages.search;
+package by.itacademy.radzetskaya.ria.ui.pages.search;
 
 public enum SearchLocators {
 

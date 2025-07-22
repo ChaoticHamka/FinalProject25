@@ -1,7 +1,7 @@
-package by.itacademy.radzetskaya.ria.UI.pages.passwordRecovery;
+package by.itacademy.radzetskaya.ria.ui.pages.passwordRecovery;
 
-import by.itacademy.radzetskaya.ria.UI.utils.Base.BaseTest;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.utils.Base.BaseTest;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestPasswordRecoveryUtils extends BaseTest {
@@ -16,32 +16,32 @@ public class TestPasswordRecoveryUtils extends BaseTest {
 
     protected Boolean isPasswordRecoveryFormNotDisplayed() {
         Boolean isFormDisplayed = passwordRecovery.isPasswordRecoveryFormNotDisplayed();
-        LogUI.valueInfo("Форма восстановления пароля скрыта - ", isFormDisplayed);
+        LogUi.valueInfo("Форма восстановления пароля скрыта - ", isFormDisplayed);
         return isFormDisplayed;
     }
 
     protected Boolean isAuthFormNotDisplayed() {
         Boolean isFormDisplayed = passwordRecovery.isAuthFormNotDisplayed();
-        LogUI.valueInfo("Форма авторизации скрыта - ", isFormDisplayed);
+        LogUi.valueInfo("Форма авторизации скрыта - ", isFormDisplayed);
         return isFormDisplayed;
     }
 
     protected Boolean checkClassOnEmailLabel(String classForCheck) {
-        LogUI.actionsInfoCheckClass(classForCheck, " у поля email");
+        LogUi.actionsInfoCheckClass(classForCheck, " у поля email");
         Boolean isElementHasClass = passwordRecovery.isEmailLabelContainClass(classForCheck);
-        LogUI.valueInfo(isElementHasClass);
+        LogUi.valueInfo(isElementHasClass);
         return isElementHasClass;
     }
 
     protected Boolean isPasswordRecoveryDivNotDisplayed() {
         Boolean isElementDisplayed = passwordRecovery.isPasswordRecoveryDivNotDisplayed();
-        LogUI.valueInfo("Блок продолжить скрыт - ", isElementDisplayed);
+        LogUi.valueInfo("Блок продолжить скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 
     protected Boolean isPasswordRecoveryErrorDivNotDisplayed() {
         Boolean isElementDisplayed = passwordRecovery.isPasswordRecoveryErrorDivNotDisplayed();
-        LogUI.valueInfo("Блок \"Проверьте email\" скрыт - ", isElementDisplayed);
+        LogUi.valueInfo("Блок \"Проверьте email\" скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 

@@ -1,8 +1,8 @@
-package by.itacademy.radzetskaya.ria.UI.utils;
+package by.itacademy.radzetskaya.ria.ui.utils;
 
 import by.itacademy.radzetskaya.ria.Base.BaseLog;
 
-public class LogUI extends BaseLog {
+public class LogUi extends BaseLog {
 
     public static void startTest(String message) {
         info("[ТестUI: " + message + "]");

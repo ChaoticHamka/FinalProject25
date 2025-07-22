@@ -1,19 +1,19 @@
-package by.itacademy.radzetskaya.ria.UI.pages.Login;
+package by.itacademy.radzetskaya.ria.ui.pages.Login;
 
-import by.itacademy.radzetskaya.ria.UI.pages.Main.MainPage;
-import by.itacademy.radzetskaya.ria.UI.utils.Driver;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.pages.Main.MainPage;
+import by.itacademy.radzetskaya.ria.ui.utils.Driver;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 
 public class LoginForm extends MainPage {
 
-    //кнопка "Войти"
     public String getAuthButtonText() {
         return Driver.getTextByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
     }
 
     public void clickAuthButton() {
         Driver.clickButtonByXpath(LoginFormLocators.BUTTON_AUTH_SUBMIT_BYXPATH.getLocator());
-        LogUI.testActions("клик на кнопку авторизации");
+        LogUi.testActions("клик на кнопку авторизации");
+        waitSeconds(EXTRA_WAITING_IN_SECONDS);
     }
 
     public Boolean isAuthButtonEnabled() {
@@ -32,10 +32,9 @@ public class LoginForm extends MainPage {
         return Driver.getTextById(LoginFormLocators.DIV_AUTH_ERROR_BYID.getLocator());
     }
 
-    //Поле Email
     public void clickOnEmailLabel() {
         Driver.clickButtonByXpath(LoginFormLocators.LABEL_EMAIL_BYXPATH.getLocator());
-        LogUI.testActions("клик на email");
+        LogUi.testActions("клик на email");
     }
 
     public Boolean isEmailLabelContainClass(String class_) {
@@ -44,19 +43,19 @@ public class LoginForm extends MainPage {
 
     public void setEmailField(String value) {
         Driver.setValueTextFieldById(LoginFormLocators.INPUT_EMAIL_BYID.getLocator(), value);
-        LogUI.setValueEmail(value);
+        LogUi.setValueEmail(value);
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public String getEmailFieldValue() {
         String fieldValue = Driver.getValueById(LoginFormLocators.INPUT_EMAIL_BYID.getLocator());
-        LogUI.valueInfo("email", fieldValue);
+        LogUi.valueInfo("email", fieldValue);
         return fieldValue;
     }
 
-    //Поле Пароль
     public void clickOnPasswordLabel() {
         Driver.clickButtonByXpath(LoginFormLocators.LABEL_PASSWORD_BYXPATH.getLocator());
-        LogUI.testActions("клик на пароль");
+        LogUi.testActions("клик на пароль");
     }
 
     public Boolean isPasswordLabelContainClass(String class_) {
@@ -65,17 +64,18 @@ public class LoginForm extends MainPage {
 
     public void setPasswordField(String value) {
         Driver.setValueTextFieldById(LoginFormLocators.INPUT_PASSWORD_BYID.getLocator(), value);
-        LogUI.setValuePassword(value);
+        LogUi.setValuePassword(value);
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public String getPasswordFieldValue() {
         String fieldValue = Driver.getValueById(LoginFormLocators.INPUT_PASSWORD_BYID.getLocator());
-        LogUI.valueInfo("пароля", fieldValue);
+        LogUi.valueInfo("пароля", fieldValue);
         return fieldValue;
     }
 
     public void clickCloseAuthorizationForm() {
         Driver.clickButtonByClass(LoginFormLocators.DIV_AUTH_CLOSE_BUTTON_BYCLASS.getLocator());
-        LogUI.testActions("закрытие формы авторизации");
+        LogUi.testActions("закрытие формы авторизации");
     }
 }

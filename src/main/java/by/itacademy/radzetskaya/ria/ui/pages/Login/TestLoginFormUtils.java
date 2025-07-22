@@ -1,8 +1,10 @@
-package by.itacademy.radzetskaya.ria.UI.pages.Login;
+package by.itacademy.radzetskaya.ria.ui.pages.Login;
 
-import by.itacademy.radzetskaya.ria.UI.utils.Base.BaseTest;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.utils.Base.BaseTest;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 import org.junit.jupiter.api.BeforeEach;
+
+import java.util.PrimitiveIterator;
 
 public class TestLoginFormUtils extends BaseTest {
 
@@ -14,35 +16,38 @@ public class TestLoginFormUtils extends BaseTest {
         loginForm.openAuthorizationForm();
     }
 
+    private void logCheckClass(String classForCheck, String message, Boolean isElementHasClass) {
+        LogUi.actionsInfoCheckClass(classForCheck, message);
+        LogUi.valueInfo(isElementHasClass);
+    }
+
     protected Boolean checkClassOnEmailLabel(String classForCheck) {
-        LogUI.actionsInfoCheckClass(classForCheck, " у поля email");
         Boolean isElementHasClass = loginForm.isEmailLabelContainClass(classForCheck);
-        LogUI.valueInfo(isElementHasClass);
+        logCheckClass(classForCheck, " у поля email", isElementHasClass);
         return isElementHasClass;
     }
 
     protected Boolean checkClassOnPasswordLabel(String classForCheck) {
-        LogUI.actionsInfoCheckClass(classForCheck, " у поля пароля");
         Boolean isElementHasClass = loginForm.isPasswordLabelContainClass(classForCheck);
-        LogUI.valueInfo(isElementHasClass);
+        logCheckClass(classForCheck, " у поля пароля", isElementHasClass);
         return isElementHasClass;
     }
 
     protected Boolean isAuthDivNotDisplayed() {
         Boolean isElementDisplayed = loginForm.isAuthDivNotDisplayed();
-        LogUI.valueInfo("Блок авторизации скрыт - ", isElementDisplayed);
+        LogUi.valueInfo("Блок авторизации скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 
     protected Boolean isAuthErrorDivNotDisplayed() {
         Boolean isElementDisplayed = loginForm.isAuthErrorDivNotDisplayed();
-        LogUI.valueInfo("Блок \"Проверьте email\" скрыт - ", isElementDisplayed);
+        LogUi.valueInfo("Блок \"Проверьте email\" скрыт - ", isElementDisplayed);
         return isElementDisplayed;
     }
 
     protected Boolean isAuthButtonEnabled() {
         Boolean isElementEnabled = loginForm.isAuthButtonEnabled();
-        LogUI.valueInfo("Кнопка авторизации активна - ", isElementEnabled);
+        LogUi.valueInfo("Кнопка авторизации активна - ", isElementEnabled);
         return isElementEnabled;
     }
 

@@ -1,24 +1,27 @@
-package by.itacademy.radzetskaya.ria.UI.pages.passwordRecovery;
+package by.itacademy.radzetskaya.ria.ui.pages.passwordRecovery;
 
-import by.itacademy.radzetskaya.ria.UI.pages.Main.MainPage;
-import by.itacademy.radzetskaya.ria.UI.utils.Driver;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.pages.Main.MainPage;
+import by.itacademy.radzetskaya.ria.ui.utils.Driver;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 
 public class PasswordRecovery extends MainPage {
 
     public void clickOnPasswordRecoveryText() {
         Driver.clickButtonByXpath(PasswordRecoveryLocators.DIV_TO_RECOVERY_PASSWORD_FORM_BYXPATH.getLocator());
-        LogUI.testActions("клик на текст восстановления пароля");
+        LogUi.testActions("клик на текст восстановления пароля");
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public void clickBack() {
         Driver.clickButtonByXpath(PasswordRecoveryLocators.DIV_TO_AUTH_FORM_BYXPATH.getLocator());
-        LogUI.testActions("Возвращение на форму авторизации");
+        LogUi.testActions("возвращение на форму авторизации");
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public void clickOnGetAccessToAccount() {
         Driver.clickButtonByXpath(PasswordRecoveryLocators.A_TO_RECOVERY_PASSWORD_FORM_BYXPATH.getLocator());
-        LogUI.testActions("клик на получение доступа к аккаунту");
+        LogUi.testActions("клик на получение доступа к аккаунту");
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public Boolean isPasswordRecoveryFormNotDisplayed() {
@@ -31,7 +34,7 @@ public class PasswordRecovery extends MainPage {
 
     public void clickOnEmailLabel() {
         Driver.clickButtonByXpath(PasswordRecoveryLocators.LABEL_EMAIL_BYXPATH.getLocator());
-        LogUI.testActions("клик на email");
+        LogUi.testActions("клик на email");
     }
 
     public Boolean isEmailLabelContainClass(String class_) {
@@ -40,12 +43,14 @@ public class PasswordRecovery extends MainPage {
 
     public void setEmailField(String value) {
         Driver.setValueTextFieldById(PasswordRecoveryLocators.INPUT_EMAIL_BYID.getLocator(), value);
-        LogUI.setValueEmail(value);
+        LogUi.setValueEmail(value);
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public void clickPasswordRecoveryButton() {
         Driver.clickButtonByXpath(PasswordRecoveryLocators.BUTTON_RECOVERY_PASSWORD_SUBMIT_BYXPATH.getLocator());
-        LogUI.testActions("клик на кнопку авторизации");
+        LogUi.testActions("клик на кнопку авторизации");
+        waitSeconds(DEFAULT_WAITING_IN_SECONDS);
     }
 
     public Boolean isPasswordRecoveryDivNotDisplayed() {

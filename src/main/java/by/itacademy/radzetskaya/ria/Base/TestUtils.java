@@ -6,33 +6,28 @@ public class TestUtils {
 
     private final Faker faker = new Faker();
     private final int MAX_RANDOM_VALUE = 9999;
-    private final int MILLIS_IN_SECOND = 1000;
 
-    protected void waiting(int seconds) {
-        try {
-            Thread.sleep(seconds * MILLIS_IN_SECOND);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected String fakerInt() {
+    protected String getRandomInt() {
         return Integer.toString(faker.random().nextInt(MAX_RANDOM_VALUE));
     }
 
-    protected String fakerFullName() {
+    protected String getRandomFullName() {
         return faker.name().fullName();
     }
 
-    protected String fakerUserName() {
+    protected String getRandomUserName() {
         return faker.name().username();
     }
 
-    protected String fakerEmail() {
+    protected String getRandomEmail() {
         return faker.internet().emailAddress();
     }
 
-    protected String fakerPassword() {
+    protected String getRandomInvalidEmail() {
+        return faker.internet().emailAddress().replace("@", "");
+    }
+
+    protected String getRandomPassword() {
         return faker.internet().password();
     }
 }

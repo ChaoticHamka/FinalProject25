@@ -1,9 +1,9 @@
-package by.itacademy.radzetskaya.ria.UI.utils.Base;
+package by.itacademy.radzetskaya.ria.ui.utils.Base;
 
 import by.itacademy.radzetskaya.ria.Base.TestUtils;
-import by.itacademy.radzetskaya.ria.UI.pages.Main.MainPage;
-import by.itacademy.radzetskaya.ria.UI.utils.Driver;
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.pages.Main.MainPage;
+import by.itacademy.radzetskaya.ria.ui.utils.Driver;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -17,7 +17,7 @@ public class BaseTest extends TestUtils {
 
     @AfterEach
     public void tearDown() {
-        LogUI.endTest();
+        LogUi.endTest();
         Driver.quit();
     }
 

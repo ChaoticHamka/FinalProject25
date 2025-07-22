@@ -1,14 +1,14 @@
-package by.itacademy.radzetskaya.ria.API;
+package by.itacademy.radzetskaya.ria.api;
 
-import by.itacademy.radzetskaya.ria.API.modules.Login;
-import by.itacademy.radzetskaya.ria.API.utils.BaseAPI;
-import by.itacademy.radzetskaya.ria.API.utils.LogAPI;
+import by.itacademy.radzetskaya.ria.api.modules.Login;
+import by.itacademy.radzetskaya.ria.api.utils.BaseApi;
+import by.itacademy.radzetskaya.ria.api.utils.LogApi;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestLogin extends BaseAPI {
+public class TestLogin extends BaseApi {
 
     private Login login;
 
@@ -20,7 +20,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testDefault() {
         String heading = "Проверка по умолчанию (email и пароль валидные)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseDefault();
         assertAll(
                 heading,
@@ -33,7 +33,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testWrongPassword() {
         String heading = "Проверка на неверный пароль (email и пароль валидные)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseWithEmail();
         assertAll(
                 heading,
@@ -46,7 +46,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testWrongPasswordLimit() {
         String heading = "Проверка на неверный пароль при лимите (email и пароль валидные)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         for (int i = 0; i < 6; i++) {
             login.setResponseWithEmail();
         }
@@ -61,7 +61,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testWithoutHeaders() {
         String heading = "Проверка без хедеров (email и пароль валидные)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseDefaultWithoutHeaders();
         assertAll(
                 heading,
@@ -74,7 +74,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testEmptyPassword() {
         String heading = "Проверка с пустым паролем (email валидный)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseEmptyPassword();
         assertAll(
                 heading,
@@ -87,7 +87,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testEmptyLogin() {
         String heading = "Проверка с пустым email (пароль валидный)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseEmptyLogin();
         assertAll(
                 heading,
@@ -100,7 +100,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testNotEmail() {
         String heading = "Проверка вместо email имя (пароль валидный)";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseLoginNotEmail();
         assertAll(
                 heading,
@@ -113,7 +113,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testEmptyLoginAndPassword() {
         String heading = "Проверка с пустыми email и паролем";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseEmptyLoginAndPassword();
         assertAll(
                 heading,
@@ -126,7 +126,7 @@ public class TestLogin extends BaseAPI {
     @Test
     public void testEmptyBody() {
         String heading = "Проверка с пустым body";
-        LogAPI.startTest(heading);
+        LogApi.startTest(heading);
         login.setResponseEmptyBody();
         assertAll(
                 heading,
