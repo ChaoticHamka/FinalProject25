@@ -127,8 +127,6 @@ public void testEmptyLoginAndPassword() {
         () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть 'error'"),
         () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "Ошибка 'login' должна быть 'empty'")
     );
-
-    LogAPI.endTest();
 }
 ```
 
