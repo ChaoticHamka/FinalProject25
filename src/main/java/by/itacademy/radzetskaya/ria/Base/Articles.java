@@ -1,6 +1,6 @@
 package by.itacademy.radzetskaya.ria.Base;
 
-import by.itacademy.radzetskaya.ria.UI.utils.LogUI;
+import by.itacademy.radzetskaya.ria.ui.utils.LogUi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Articles {
 
-    private List<String> articles = new ArrayList<>();
+    private final List<String> articles = new ArrayList<>();
 
     public Articles() {
         articles.add("Материнский капитал — 2025: сумма выплаты и на что ее можно потратить");
@@ -27,7 +27,7 @@ public class Articles {
         Random rand = new Random();
         int randomNumber = rand.nextInt(articles.size());
         String articleName = articles.get(randomNumber);
-        LogUI.setArticle(articleName);
+        LogUi.setArticle(articleName);
         return articleName;
     }
 }
