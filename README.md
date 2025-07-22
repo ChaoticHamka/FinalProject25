@@ -62,7 +62,7 @@
 | Библиотека            | Назначение                                          |
 |------------------------|-----------------------------------------------------|
 | <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/JUnit_5_Banner.png" alt="PlantUML" width="60"> **JUnit 5**       | Фреймворк для написания и запуска тестов |
-| <img src="https://cdn.springpeople.com/media/Rest%20Assured.png" alt="REST Assured" width="60"> **REST Assured** | Тестирование REST API                     |
+| <img src="https://dogq.io/blog/content/images/2023/11/4.png" alt="REST Assured" width="60"> **REST Assured** | Тестирование REST API                     |
 | <img src="https://camo.githubusercontent.com/03ea5cbad1fd5efa88109b9c7a0524974b52aa8f525a2defe0a8cc88a6eb1e94/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f642f64352f53656c656e69756d5f4c6f676f2e706e67" alt="Selenium WebDriver" width="60"> **Selenium WebDriver** | Автоматизация UI-тестов                   |
 | <img src="https://miro.medium.com/v2/resize:fit:790/1*nQq_1UizpnVtMeux4NXvjw.png" alt="Java Faker" width="60"> **Java Faker**      | Генерация случайных данных                          |
 | <img src="https://openvpn.net/wp-content/uploads/log4j.png" alt="Log4j" width="60"> **Log4j**           | Логгирование тестов                                |
