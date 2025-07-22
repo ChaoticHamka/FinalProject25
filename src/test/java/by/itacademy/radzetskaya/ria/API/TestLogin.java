@@ -28,7 +28,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("not_exist", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"not_exist\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -42,21 +41,21 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("wrong", login.getResponseAsJSON().getString("errors.password"), "password должен быть \"wrong\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
     public void testWrongPasswordLimit() {
-        String heading = "Проверка на неверный пароль (email и пароль валидные)";
+        String heading = "Проверка на неверный пароль при лимите (email и пароль валидные)";
         LogAPI.startTest(heading);
-        login.setResponseWithEmail();
+        for (int i = 0; i < 6; i++) {
+            login.setResponseWithEmail();
+        }
         assertAll(
                 heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("logins limit", login.getResponseAsJSON().getString("errors.auth"), "auth должен быть \"logins limit\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -70,7 +69,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -84,7 +82,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.password"), "password должен быть \"empty\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -98,7 +95,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -112,7 +108,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("not_exist", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"not_exist\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -126,7 +121,6 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
         );
-        LogAPI.endTest();
     }
 
     @Test
@@ -140,6 +134,5 @@ public class TestLogin extends BaseAPI {
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
         );
-        LogAPI.endTest();
     }
 }
