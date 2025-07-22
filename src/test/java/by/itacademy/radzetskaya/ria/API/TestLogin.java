@@ -19,10 +19,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testDefault() {
-        LogAPI.startTest("Проверка по умолчанию (емейл и пароль валидные)");
+        String heading = "Проверка по умолчанию (email и пароль валидные)";
+        LogAPI.startTest(heading);
         login.setResponseDefault();
         assertAll(
-                "Проверка по умолчанию (емейл и пароль валидные)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("not_exist", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"not_exist\"")
@@ -32,10 +33,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testWrongPassword() {
-        LogAPI.startTest("Проверка на неверный пароль (емейл и пароль валидные)");
+        String heading = "Проверка на неверный пароль (email и пароль валидные)";
+        LogAPI.startTest(heading);
         login.setResponseWithEmail();
         assertAll(
-                "Проверка на неверный пароль (емейл и пароль валидные)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("wrong", login.getResponseAsJSON().getString("errors.password"), "password должен быть \"wrong\"")
@@ -45,10 +47,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testWrongPasswordLimit() {
-        LogAPI.startTest("Проверка на неверный пароль (емейл и пароль валидные)");
+        String heading = "Проверка на неверный пароль (email и пароль валидные)";
+        LogAPI.startTest(heading);
         login.setResponseWithEmail();
         assertAll(
-                "Проверка на неверный пароль (емейл и пароль валидные)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("logins limit", login.getResponseAsJSON().getString("errors.auth"), "auth должен быть \"logins limit\"")
@@ -58,10 +61,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testWithoutHeaders() {
-        LogAPI.startTest("Проверка без хедеров (емейл и пароль валидные)");
+        String heading = "Проверка без хедеров (email и пароль валидные)";
+        LogAPI.startTest(heading);
         login.setResponseDefaultWithoutHeaders();
         assertAll(
-                "Проверка без хедеров (емейл и пароль валидные)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
@@ -71,10 +75,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testEmptyPassword() {
-        LogAPI.startTest("Проверка с пустым паролем (емейл валидный)");
+        String heading = "Проверка с пустым паролем (email валидный)";
+        LogAPI.startTest(heading);
         login.setResponseEmptyPassword();
         assertAll(
-                "Проверка с пустым паролем (емейл валидный)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.password"), "password должен быть \"empty\"")
@@ -84,10 +89,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testEmptyLogin() {
-        LogAPI.startTest("Проверка с пустым емейлом (пароль валидный)");
+        String heading = "Проверка с пустым email (пароль валидный)";
+        LogAPI.startTest(heading);
         login.setResponseEmptyLogin();
         assertAll(
-                "Проверка с пустым емейлом (пароль валидный)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
@@ -97,10 +103,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testNotEmail() {
-        LogAPI.startTest("Проверка вместо емейла имя (пароль валидный)");
+        String heading = "Проверка вместо email имя (пароль валидный)";
+        LogAPI.startTest(heading);
         login.setResponseLoginNotEmail();
         assertAll(
-                "Проверка вместо емейла имя (пароль валидный)",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("not_exist", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"not_exist\"")
@@ -110,10 +117,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testEmptyLoginAndPassword() {
-        LogAPI.startTest("Проверка с пустыми емейлом и паролем");
+        String heading = "Проверка с пустыми email и паролем";
+        LogAPI.startTest(heading);
         login.setResponseEmptyLoginAndPassword();
         assertAll(
-                "Проверка с пустыми емейлом и паролем",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
@@ -123,10 +131,11 @@ public class TestLogin extends BaseAPI {
 
     @Test
     public void testEmptyBody() {
-        LogAPI.startTest("Проверка с пустым body");
+        String heading = "Проверка с пустым body";
+        LogAPI.startTest(heading);
         login.setResponseEmptyBody();
         assertAll(
-                "Проверка с пустым body",
+                heading,
                 () -> assertEquals(200, login.getResponseStatusCode(), "Статус-код должен быть 200"),
                 () -> assertEquals("error", login.getResponseAsJSON().getString("status"), "Статус должен быть \"error\""),
                 () -> assertEquals("empty", login.getResponseAsJSON().getString("errors.login"), "login должен быть \"empty\"")
