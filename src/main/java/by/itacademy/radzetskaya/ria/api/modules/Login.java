@@ -2,8 +2,10 @@ package by.itacademy.radzetskaya.ria.api.modules;
 
 import by.itacademy.radzetskaya.ria.api.utils.BaseApi;
 import by.itacademy.radzetskaya.ria.api.utils.LogApi;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 public class Login extends BaseApi {
@@ -17,7 +19,7 @@ public class Login extends BaseApi {
         return headers;
     }
 
-    private void setResponse(Map<String, String> headers, String body){
+    private void setResponse(Map<String, String> headers, String body) {
         response = given()
                 .headers(headers)
                 .body(body)
@@ -25,14 +27,14 @@ public class Login extends BaseApi {
                 .post(POST_LOGIN_LINK);
     }
 
-    private void setResponse(String body){
+    private void setResponse(String body) {
         response = given()
                 .body(body)
                 .when()
                 .post(POST_LOGIN_LINK);
     }
 
-    private void setResponse(Map<String, String> headers){
+    private void setResponse(Map<String, String> headers) {
         response = given()
                 .headers(headers)
                 .when()
@@ -71,7 +73,7 @@ public class Login extends BaseApi {
         setResponse(setHeaders());
     }
 
-    private String setBody(String login, String password){
+    private String setBody(String login, String password) {
         return String.format("login=%s&password=%s", login, password);
     }
 
@@ -115,7 +117,7 @@ public class Login extends BaseApi {
         return setValue("login", fakerUserName());
     }
 
-    private String setValue(String field, String value){
+    private String setValue(String field, String value) {
         LogApi.setValue(field, value);
         return value;
     }

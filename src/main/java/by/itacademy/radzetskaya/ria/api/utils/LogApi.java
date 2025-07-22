@@ -1,8 +1,8 @@
-package by.itacademy.radzetskaya.ria.API.utils;
+package by.itacademy.radzetskaya.ria.api.utils;
 
 import by.itacademy.radzetskaya.ria.Base.BaseLog;
 
-public class LogAPI extends BaseLog {
+public class LogApi extends BaseLog {
 
     public static void startTest(String message) {
         info("[ТестAPI: " + message + "]");

@@ -19,7 +19,7 @@ public class BaseApi extends TestUtils {
     }
 
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         LogApi.endTest();
     }
 
