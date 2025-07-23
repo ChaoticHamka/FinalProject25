@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class Login extends BaseApi {
+public class LoginUtils extends BaseApi {
 
     private final String POST_LOGIN_LINK = "https://ria.ru/services/id/login/";
     private final String DEFAULT_EMAIL = "e@mail.ru";
