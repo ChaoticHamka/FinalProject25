@@ -47,7 +47,7 @@ public class TestLogin extends BaseApi {
     public void testWrongPasswordLimit() {
         String heading = "Проверка на неверный пароль при лимите (email и пароль валидные)";
         LogApi.startTest(heading);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             login.setResponseWithEmail();
         }
         assertAll(

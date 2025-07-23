@@ -216,7 +216,6 @@ public class TestLoginForm extends TestLoginFormUtils {
                 () -> assertEquals(DefaultValues.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV, loginForm.getAuthErrorDivText(), "Текст блока должен быть \"" + DefaultValues.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\""),
                 () -> assertFalse(isAuthErrorDivIsNotDisplayedAfterEnter, "Кнопка \"" + DefaultValues.VALUE_CHECK_EMAIL_OR_PASSWORD_ERROR_DIV + "\" должна была появиться")
         );
-
     }
 
     @Test
