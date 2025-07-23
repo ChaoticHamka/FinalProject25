@@ -90,7 +90,7 @@ public void testEmailLabelChangeOnFocused() {
     String heading = "Проверка поведения поля email при клике на него";
     LogUI.startTest(heading);
 
-    String classForCheck = Finals.CSS_CLASS_ON_FOCUSED;
+    String classForCheck = DefaultValues.CSS_CLASS_ON_FOCUSED;
 
     // До клика класс отсутствует
     Boolean isLabelHasClassBeforeClick = checkClassOnEmailLabel(classForCheck);
