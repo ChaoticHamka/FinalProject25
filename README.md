@@ -1,5 +1,7 @@
-# Тестируемый автоматизированный фреймворк
-## "РИА Новости"
+# Тестируемый автоматизированный фреймворк 
+## [РИА Новости](https://ria.ru)
+
+[<img src="docs/ria.ru.png" alt="" width="100%">](https://ria.ru)
 
 > **Автоматизированный проект тестирования онлайн-сервиса "РИА Новости"**, включающий как UI-, так и API-тесты, реализованные на Java с использованием современных инструментов и библиотек.
 
@@ -13,25 +15,25 @@
 
 ### ✅ UI
 
-Тестируются компоненты формы логина и восстановления пароля:
-- Активность кнопок при загрузке;
-- Валидация полей email и пароля;
-- Появление/исчезновение ошибок;
-- Поведение при вводе невалидных значений;
-- Сохранение данных после закрытия формы.
+1. Тестируются компоненты формы логина и восстановления пароля:
+   - Активность кнопок при загрузке;
+   - Валидация полей email и пароля;
+   - Появление/исчезновение ошибок;
+   - Поведение при вводе невалидных значений;
+   - Сохранение данных после закрытия формы.
+2. Выполняется тестирование поиска по сайту.
 
-Выполняется тестирование поиска по сайту.
+<img src="docs/loginform.png" alt="PlantUML" width="100%">
 
 ### ✅ API
 
-Проверяются различные сценарии обращения к endpoint авторизации:
-- Пустые/невалидные email и пароль;
-- Невалидный формат email;
-- Отсутствие headers;
-- Проверка лимитов по неудачным попыткам входа;
-- Статус-коды и тело ответа.
-
-Выполняется тестирование поиска по сайту.
+1. Проверяются различные сценарии обращения к endpoint авторизации:
+   - Пустые/невалидные email и пароль;
+   - Невалидный формат email;
+   - Отсутствие headers;
+   - Проверка лимитов по неудачным попыткам входа;
+   - Статус-коды и тело ответа.
+2. Выполняется тестирование поиска по сайту.
 
 # RIA Authorization & Password Recovery Tests
 
@@ -47,13 +49,11 @@
 
 - **IntelliJ IDEA** — основная IDE для разработки и запуска тестов.
 
----
-
 ## Используемые инструменты
 
 | Инструмент                                                                                                                                                                                                                         | Назначение                               |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
-| <img src="https://camo.githubusercontent.com/21df198fc04f5b13fbd8f7eb39b06b4fa4eefc600a2ede6e9c4ba2b42c95bff1/68747470733a2f2f656469746f72636f6e6669672e6f72672f6c6f676f732f6d6176656e2e706e67" alt="Maven" width="60">  **Maven** | Сборка проекта и управление зависимостями |
+| <img src="https://camo.githubusercontent.com/07383d92002190b38a6ee8eac0baec1f8d73e3fb9b68aaf1c4b11b3deee8dbca/68747470733a2f2f7777772e7376677265706f2e636f6d2f73686f772f3337333832392f6d6176656e2e737667" alt="Maven" width="60">  **Maven** | Сборка проекта и управление зависимостями |
 | <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/48/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png" alt="Postman" width="60"> **Postman**                                          | Визуальное тестирование API-запросов      |
 | <img src="https://img.icons8.com/color/48/000000/jenkins.png" alt="Jenkins" width="60"> **Jenkins**                                                                                                                                                         | Автоматизация CI/CD                       |
 | <img src="https://img.icons8.com/material-outlined/48/000000/github.png" alt="GitHub" width="60"> **GitHub**                                                                                                                                                | Хранение и версионирование кода          |
@@ -63,22 +63,72 @@
 
 ## Технологии тестирования
 
-| Библиотека            | Назначение                                          |
-|------------------------|-----------------------------------------------------|
-| <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/JUnit_5_Banner.png" alt="PlantUML" width="60"> **JUnit 5**       | Фреймворк для написания и запуска тестов |
-| <img src="https://dogq.io/blog/content/images/2023/11/4.png" alt="REST Assured" width="60"> **REST Assured** | Тестирование REST API                     |
+| Библиотека                                                                                                                                                                                                                                                                                                            | Назначение                                          |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
+| <img src="docs/junit5.png" alt="PlantUML" width="60"> **JUnit 5**                                                                                                                                                                                                                                                     | Фреймворк для написания и запуска тестов |
+| <img src="docs/restassured.png" alt="REST Assured" width="60"> **REST Assured**                                                                                                                                                                                                                                       | Тестирование REST API                     |
 | <img src="https://camo.githubusercontent.com/03ea5cbad1fd5efa88109b9c7a0524974b52aa8f525a2defe0a8cc88a6eb1e94/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f642f64352f53656c656e69756d5f4c6f676f2e706e67" alt="Selenium WebDriver" width="60"> **Selenium WebDriver** | Автоматизация UI-тестов                   |
-| <img src="https://miro.medium.com/v2/resize:fit:790/1*nQq_1UizpnVtMeux4NXvjw.png" alt="Java Faker" width="60"> **Java Faker**      | Генерация случайных данных                          |
-| <img src="https://openvpn.net/wp-content/uploads/log4j.png" alt="Log4j" width="60"> **Log4j**           | Логгирование тестов                                |
+| <img src="docs/javafaker.png" alt="Java Faker" width="60"> **Java Faker**                                                                                                                                                                                                                                             | Генерация случайных данных                          |
+| <img src="docs/log4j.png" alt="Log4j" width="60"> **Log4j**                                                                                                                                                                                                                                                           | Логгирование тестов                                |
 
 
-# Диаграмма классов (мини-версия)
+# Диаграмма классов
 
 <img src="docs/class_diagram_mini.png" width="100%">
 
-[//]: # (<img src="docs/class_diagram.png" width="100%">)
+# Структура проекта
 
-[//]: # (![Диаграмма классов]&#40;docs/class_diagram_mini.png&#41;)
+```
+src/
+├── main/
+│   ├── java/
+│   │   └── by.itacademy.radzetskaya.ria/
+│   │       ├── api/                      # API утилиты
+│   │       │   ├── modules/             
+│   │       │   │   ├── LoginUtils
+│   │       │   │   └── SearchUtils
+│   │       │   └── utils/
+│   │       │       ├── BaseApi
+│   │       │       └── LogApi
+│   │       ├── Base/                    # Общие утилиты
+│   │       │   ├── Articles
+│   │       │   ├── BaseLog
+│   │       │   └── TestUtils
+│   │       ├── ui/                      # UI утилиты и элементы страниц
+│   │       │   ├── Login/
+│   │       │   │   ├── LoginForm
+│   │       │   │   ├── LoginFormLocators
+│   │       │   │   └── TestLoginFormUtils
+│   │       │   ├── Main/
+│   │       │   │   ├── MainPage
+│   │       │   │   └── MainPageLocators
+│   │       │   ├── passwordRecovery/
+│   │       │   │   ├── PasswordRecovery
+│   │       │   │   ├── PasswordRecoveryLocators
+│   │       │   │   └── TestPasswordRecoveryUtils
+│   │       │   ├── search/
+│   │       │   │   ├── Search
+│   │       │   │   ├── SearchLocators
+│   │       │   │   └── TestSearchUtils
+│   │       └── utils/
+│   │           ├── BaseTest
+│   │           ├── BaseUI
+│   │           ├── DefaultValues
+│   │           ├── Driver
+│   │           └── LogUI
+│   └── resources/
+│       └── log4j2.xml                   # Конфигурация логирования
+├── test/
+│   └── java/
+│       └── by.itacademy.radzetskaya.ria/
+│           ├── api/
+│           │   ├── TestLogin            # Тесты авторизации по API
+│           │   └── TestSearch           # Тесты поиска по сайту через API
+│           └── ui/
+│               ├── TestLoginForm        # UI-тест формы авторизации
+│               ├── TestPasswordRecovery # UI-тест формы восстановления пароля
+│               └── TestSearchPage       # UI-тест поиска по сайту
+```
 
 # Примеры автотестов
 
@@ -144,7 +194,3 @@ public void testEmptyLoginAndPassword() {
 # Разработчик проекта 
 ## Радецкая Юлия
 [![codewars](https://www.codewars.com/users/ChaoticHamka/badges/large)](https://www.codewars.com/users/ChaoticHamka)
-
-# Блок с цитатами
-
-[![Readme Quotes](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark)](https://github.com/piyushsuthar/github-readme-quotes)
