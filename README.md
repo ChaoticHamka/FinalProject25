@@ -74,7 +74,7 @@
 
 # Диаграмма классов
 
-<img src="docs/class_diagram_mini.png" width="100%">
+<img src="docs/class_diagram_mini.png" alt="диаграмма классов" width="100%">
 
 # Структура проекта
 
